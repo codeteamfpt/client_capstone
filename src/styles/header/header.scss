@@ -1,0 +1,67 @@
+#header{
+    background-color: #044d72;
+    .shopping-cart{
+        width: 55px;
+        height: 55px;
+        background-color: rgb(250, 193, 88);
+        padding: 15px;
+        position: fixed;
+        right: 0;
+        top: 30%;
+        cursor: pointer;
+        transform: translateX(0);
+        transition: all 0.3s ease;
+        &:hover{
+            transform: translateX(-15%);
+        }
+    }
+    .header-top{
+        .tool{
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 10px;
+            padding-right: 20%;
+            .tool-item{
+                margin: 0 7px;
+                box-shadow: -2px 2px 8px #888888;
+                transition: all 0.3s ease;
+                &:hover{
+                    box-shadow: -4px 4px 8px #d1d1d1;
+                }
+            }
+            .search{
+                position: relative;
+                background-color: white;
+                display: flex;
+                .search-icon{
+                    width: 25px;
+                    height: 25px;
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    z-index: 2;
+                }
+                input{
+                    padding: 10px 15px 10px 40px;
+                }
+            }
+            .cart-button{
+                width: 40px;
+                height: 40px;
+                background-color: rgb(69, 181, 255);
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .profile-button{
+                width: 40px;
+                height: 40px;
+                background-color: rgb(69, 181, 255);
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+
+            }
+        }
+    }
+}

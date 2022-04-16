@@ -1,0 +1,26 @@
+#banner{
+    .banner-container{
+        height: 485px;
+        touch-action: pan-y;
+        .banner{
+            margin: 0 auto;
+            max-width: 1170px;
+            .banner-img{
+                display: flex;
+                position: relative;
+                top: 0px;
+                .banner-img1{
+                    position: relative;
+                    width: 70%;
+                }
+                .banner-img2{
+                    width: 40%;
+                    position: absolute;
+                    right: 150px;
+                    top: 50px;
+                }
+            }
+        }
+    }
+    
+}
