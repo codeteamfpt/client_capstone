@@ -99,4 +99,19 @@ html {
     margin-block-start: 0;
     margin-block-end: 0;
   }
+  img{
+    width: 100%;
+    object-fit: cover
+  }
+  a{
+    text-decoration: none;
+    outline: none;
+    transition: all 0.3s ease;
+    opacity: 1;
+  }
   @import url('./pages/home.scss');
+  @import url('./banner/banner.scss');
+  @import url('./navbar/navbar.scss');
+  @import url('./header/header.scss');
+
+
