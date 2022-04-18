@@ -1,21 +1,21 @@
-#navigation{
-    .nav-container{
-        display: flex;
-        justify-content: end;
-        text-align: center;
-        padding-top: 30px;
-        padding-right: 20%;
-        .nav-item{
-            a{
-                color: white;
-                padding: 10px;
-                margin: 0 10px;
-                border-radius: 5px;
-                transition: 0.5s ease;
-                &:hover{
-                    background-color: aqua;
-                }
-            }
+#navigation {
+  .nav-container {
+    display: flex;
+    justify-content: flex-end;
+    text-align: center;
+    padding-top: 30px;
+    padding-right: 20%;
+    .nav-item {
+      a {
+        color: white;
+        padding: 10px;
+        margin: 0 10px;
+        border-radius: 5px;
+        transition: 0.5s ease;
+        &:hover {
+          background-color: aqua;
         }
+      }
     }
+  }
 }

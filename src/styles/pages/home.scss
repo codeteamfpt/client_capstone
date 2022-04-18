@@ -1,0 +1,46 @@
+#home-page {
+  .section {
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    &::after {
+      content: "";
+      border-right: 40px solid #f4f7f9;
+      border-left: 40px solid #f4f7f9;
+      border-top: 40px solid white;
+      border-bottom: 40px solid #f4f7f9;
+      width: 0;
+      height: 0;
+      position: absolute;
+      bottom: -80px;
+      left: 47%;
+    }
+    p:first-child {
+      font-weight: bold;
+      font-size: 27px;
+      margin-bottom: 20px;
+    }
+  }
+  #list-book {
+    background-color: #f4f7f9;
+    .title-list {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      padding-top: 80px;
+    }
+    .book-container {
+      margin: 0 auto;
+      max-width: 1170px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      padding-bottom: 40px;
+
+      .cart-item {
+        padding: 17px;
+      }
+    }
+  }
+}
