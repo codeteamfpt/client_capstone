@@ -3,3 +3,8 @@ export interface IHeader {
   content: string;
   url?: string;
 }
+export interface Book {
+  image: string;
+  title: string;
+  price: string;
+}

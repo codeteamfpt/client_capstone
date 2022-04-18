@@ -1,0 +1,20 @@
+#footer {
+  padding: 20px;
+  background-color: #044d72;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  .copyright-footer {
+    text-align: center;
+  }
+  p {
+    &:first-child {
+      padding: 20px;
+    }
+    span {
+      a {
+        color: white;
+      }
+    }
+  }
+}
