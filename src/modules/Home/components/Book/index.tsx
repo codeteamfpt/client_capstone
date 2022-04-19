@@ -9,10 +9,16 @@ const Book = (props: Props) => {
         <div className="card-image">
           <img src="/images/mindmap-english-grammar.jpg" alt="" />
         </div>
+        <div className="category">
+          <p>Sách tự học tiếng Nhật </p>
+        </div>
+        <Link to="/" className="btn-view">
+          <p>Xem ngay</p>
+        </Link>
         <div className="card-content">
           <span className="hr"> </span>
           <div className="title">
-            <Link to="">
+            <Link to="/">
               <br />
               Mind Map English Grammar – Ngữ pháp tiếng anh bằng sơ đồ tư duy
             </Link>

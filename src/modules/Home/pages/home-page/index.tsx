@@ -1,11 +1,8 @@
 import Book from "../../components/Book";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
 
 const HomePage = () => {
   return (
-    <div id="home-page">
-      <Header />
+    <>
       <div className="section">
         <p>
           Công ty sách MCBooks
@@ -33,8 +30,7 @@ const HomePage = () => {
           <Book />
         </div>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 
