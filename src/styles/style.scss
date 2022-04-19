@@ -109,9 +109,10 @@ a {
   transition: all 0.3s ease;
   opacity: 1;
 }
-@import url("./pages/home.scss");
+@import url("./pages/home-layout.scss");
 @import url("./banner/banner.scss");
 @import url("./navbar/navbar.scss");
 @import url("./header/header.scss");
 @import url("./book/book.scss");
 @import url("./footer/footer.scss");
+@import url("./pages/cart.scss");

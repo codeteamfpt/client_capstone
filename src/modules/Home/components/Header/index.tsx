@@ -1,12 +1,16 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import Banner from "../Banner";
 import Navbar from "../Navbar";
 
 const Header = () => {
+  const { pathname } = useLocation();
   return (
     <div id="header">
       <div className="shopping-cart">
-        <img src="/images/shopping-cart.png" alt="" />
+        <Link to="/cart">
+          <img src="/images/shopping-cart.png" alt="" />
+        </Link>
       </div>
       <div className="header-top">
         <div className="tool">
@@ -22,7 +26,10 @@ const Header = () => {
             />
           </div>
           <div className="cart-button tool-item">
-            <img src="/images/shopping-cart.png" alt="" />
+            <Link to="/cart">
+              <p>9</p>
+              <img src="/images/shopping-cart.png" alt="" />
+            </Link>
           </div>
           <div className="profile-button tool-item">
             <img src="/images/user.png" alt="" />
@@ -30,9 +37,13 @@ const Header = () => {
         </div>
         <Navbar />
       </div>
-      <div className="header-bottom">
-        <Banner />
-      </div>
+      {pathname === "/" ? (
+        <div className="header-bottom">
+          <Banner />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
