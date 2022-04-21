@@ -1,15 +1,27 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Banner from "../Banner";
+import Login from "../Login";
 import Navbar from "../Navbar";
 
 const Header = () => {
   const { pathname } = useLocation();
+  const [show, setShow] = React.useState<boolean>(false);
+  const toggleModal = () => {
+    setShow(!show);
+  };
+  const closeModal = () => {
+    setShow(false);
+  };
   return (
     <div id="header">
+      <label
+        className={show ? "overlay show" : "overlay"}
+        onClick={closeModal}
+      ></label>
       <div className="shopping-cart">
         <Link to="/cart">
-          <img src="/images/shopping-cart.png" alt="" />
+          <img className="cart" src="/images/shopping-cart.png" alt="" />
         </Link>
       </div>
       <div className="header-top">
@@ -28,11 +40,17 @@ const Header = () => {
           <div className="cart-button tool-item">
             <Link to="/cart">
               <p>9</p>
-              <img src="/images/shopping-cart.png" alt="" />
+              <img className="cart" src="/images/shopping-cart.png" alt="" />
             </Link>
           </div>
           <div className="profile-button tool-item">
-            <img src="/images/user.png" alt="" />
+            <img
+              className="profile"
+              src="/images/user.png"
+              alt=""
+              onClick={toggleModal}
+            />
+            <Login closeModal={closeModal} show={show} />
           </div>
         </div>
         <Navbar />
