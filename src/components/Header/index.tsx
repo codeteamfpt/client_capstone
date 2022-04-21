@@ -21,7 +21,7 @@ const Header = () => {
       ></label>
       <div className="shopping-cart">
         <Link to="/cart">
-          <img src="/images/shopping-cart.png" alt="" />
+          <img className="cart" src="/images/shopping-cart.png" alt="" />
         </Link>
       </div>
       <div className="header-top">
@@ -40,7 +40,7 @@ const Header = () => {
           <div className="cart-button tool-item">
             <Link to="/cart">
               <p>9</p>
-              <img src="/images/shopping-cart.png" alt="" />
+              <img className="cart" src="/images/shopping-cart.png" alt="" />
             </Link>
           </div>
           <div className="profile-button tool-item">
