@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router";
-import Footer from "../../modules/Home/components/Footer";
-import Header from "../../modules/Home/components/Header";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 
 const EmptyLayout = () => {
   return (

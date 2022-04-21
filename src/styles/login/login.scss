@@ -1,0 +1,68 @@
+#login-modal {
+  display: none;
+  position: relative;
+  transition: all 0.3s ease;
+  &.show {
+    display: block;
+  }
+  .wrap {
+    .close {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+    position: fixed;
+    top: 20%;
+    left: 25%;
+    background-color: white;
+    width: 50%;
+    z-index: 999;
+    display: flex;
+    flex-direction: row;
+    cursor: default;
+    .wrap-form {
+      width: 90%;
+      margin: 0 auto;
+      div {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        label {
+          padding: 10px 0;
+        }
+        input {
+          height: 40px;
+          font-size: 18px;
+          line-height: 40px;
+          padding: 10px;
+        }
+      }
+      .title {
+        font-size: 26px;
+        padding-top: 20px;
+      }
+      .submit-button {
+        padding: 10px;
+        text-transform: uppercase;
+        color: white;
+        background-color: rgb(51, 71, 250);
+        border: none;
+        margin: 20px 0;
+      }
+    }
+    .login-left {
+      width: 50%;
+      border-right: 1px solid rgb(180, 180, 180);
+      display: flex;
+      flex-direction: column;
+    }
+    .register-right {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
