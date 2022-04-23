@@ -34,6 +34,7 @@ const Header = () => {
               type="text"
               name="search"
               id=""
+              defaultValue=""
               placeholder="Bạn muốn tìm sách gì"
             />
           </div>

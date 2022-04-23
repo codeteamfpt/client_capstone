@@ -1,6 +1,11 @@
+import React from "react";
+import { useRecoilState } from "recoil";
 import Book from "../../../../components/Book";
+import { globalState } from "../../../../state/appState";
 
 const HomePage = () => {
+  const [stateGlobak, setStateGlobal] = useRecoilState(globalState);
+  React.useEffect(() => {}, []);
   return (
     <>
       <div className="section">
