@@ -11,6 +11,9 @@
       .btn-view {
         z-index: 2;
         opacity: 1;
+        p {
+          margin-bottom: 0;
+        }
       }
     }
     border-radius: 20px;
