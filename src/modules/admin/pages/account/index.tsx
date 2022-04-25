@@ -2,14 +2,14 @@ import { Col, Row } from "antd";
 import Title from "antd/lib/typography/Title";
 import React from "react";
 import { useRecoilState } from "recoil";
+import useAccounts from "../../../../common/hook/useAccounts";
 import { globalState } from "../../../../state/appState";
 import AccountTable from "./AccountTable";
 
 type Props = {};
 
 const AccountManager = (props: Props) => {
-  const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const { accounts } = stateGlobal;
+  const { accounts } = useAccounts();
   const onDelete = () => () => {};
   const onEdit = () => () => {};
 

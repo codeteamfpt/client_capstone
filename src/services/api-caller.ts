@@ -3,7 +3,7 @@ import axios from "axios";
 import { AxiosRequestConfig, AxiosResponse } from "axios/index";
 // custom instance of axios
 const axiosClient = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: process.env.REACT_APP_API_SOURCE,
   headers: {
     "Content-type": "application/json",
   },

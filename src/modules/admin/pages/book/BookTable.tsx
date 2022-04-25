@@ -9,23 +9,6 @@ interface Props {
   onDelete: (record: any) => () => void;
   onEdit: (record: any) => () => void;
 }
-const data: IBook[] = [
-  {
-    image: "1",
-    price: "1",
-    title: "1",
-  },
-  {
-    image: "2",
-    price: "2",
-    title: "2",
-  },
-  {
-    image: "3",
-    price: "3",
-    title: "3",
-  },
-];
 const BookTable = (props: Props) => {
   const columns: ColumnsType<IBook> = [
     {
@@ -35,28 +18,33 @@ const BookTable = (props: Props) => {
       width: 60,
     },
     {
-      title: "title",
-      dataIndex: "title",
-      key: "title",
-      sorter: true,
-      width: 300,
+      title: "Image",
+      dataIndex: "bookImage",
+      key: "bookImage",
+      width: 200,
     },
     {
-      title: "price",
-      dataIndex: "price",
+      title: "Name",
+      dataIndex: "bookName",
+      key: "bookName",
+      sorter: true,
+      width: 500,
+    },
+    {
+      title: "Price",
+      dataIndex: "bookPrice",
       key: "price",
       sorter: true,
+      width: 120,
+    },
+    {
+      title: "Type",
+      dataIndex: "bookType",
+      key: "bookType",
       width: 300,
     },
     {
-      title: "image",
-      dataIndex: "image",
-      key: "image",
-      sorter: true,
-      width: 300,
-    },
-    {
-      title: "tool",
+      title: "Tool",
       dataIndex: "tool",
       key: "tool",
       width: 120,
@@ -70,7 +58,7 @@ const BookTable = (props: Props) => {
       ),
     },
   ];
-  return <Table columns={columns} dataSource={data} bordered />;
+  return <Table columns={columns} dataSource={props.items} bordered />;
 };
 
 export default BookTable;

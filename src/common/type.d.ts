@@ -4,15 +4,41 @@ export interface IHeader {
   url?: string;
 }
 export interface IBook {
+  bookId: string;
+  bookName: string;
+  bookInfo: string;
+  bookPrice: number;
+  bookType: string;
   image: string;
-  title: string;
-  price: string;
 }
 export interface IAccount {
-  username: string;
-  password: string;
+  accountId: string;
+  userName: string;
+  passWord: string;
+  role: number;
+  userImage: string;
 }
 
 export interface ICart {
-  product: string;
+  books: IBook[];
+}
+
+export interface InputTypeCart {
+  accountId: string;
+  bookId: string;
+  numberBook: number;
+}
+export interface InputTypeBook {
+  bookName: string;
+  bookInfo: string;
+  bookPrice: number;
+  bookType: string;
+  image: string;
+}
+
+export interface InputTypeAccount {
+  userName: string;
+  passWord: string;
+  role: number;
+  userImage: string;
 }

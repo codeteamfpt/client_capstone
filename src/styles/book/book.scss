@@ -2,9 +2,14 @@
   width: calc(100% / 4);
   padding: 20px;
   .item {
+    height: 440px;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    position: relative;
     &:hover {
       .category {
-        height: 58%;
+        height: 230px;
         z-index: 2;
         opacity: 1;
       }
@@ -16,10 +21,6 @@
         }
       }
     }
-    border-radius: 20px;
-    background-color: white;
-    border: 1px solid #ddd;
-    position: relative;
     box-shadow: 1px 1px 1px rgb(238, 238, 238);
     .card-image {
       margin: 0 auto;
@@ -43,8 +44,9 @@
         transform: translateX(-50%);
       }
       .title {
-        width: 90%;
         margin: 0 auto;
+        padding: 0 20px;
+        height: 110px;
         a {
           font-size: 14px;
           font-weight: bold;
@@ -80,7 +82,6 @@
       text-transform: uppercase;
       position: absolute;
       width: 100%;
-      height: 50%;
       visibility: visible;
       top: 0;
       text-align: center;
@@ -101,7 +102,7 @@
       }
       text-transform: uppercase;
       position: absolute;
-      top: 45%;
+      top: 40%;
       width: 120px;
       height: 40px;
       border-radius: 5px;
