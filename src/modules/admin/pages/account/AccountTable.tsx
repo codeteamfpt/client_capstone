@@ -9,20 +9,6 @@ interface Props {
   onDelete: (record: any) => () => void;
   onEdit: (record: any) => () => void;
 }
-const data: IAccount[] = [
-  {
-    password: "1",
-    username: "1",
-  },
-  {
-    password: "2",
-    username: "2",
-  },
-  {
-    password: "3",
-    username: "3",
-  },
-];
 const AccountTable = (props: Props) => {
   const columns: ColumnsType<IAccount> = [
     {
@@ -32,18 +18,32 @@ const AccountTable = (props: Props) => {
       width: 60,
     },
     {
-      title: "username",
-      dataIndex: "username",
-      key: "username",
-      sorter: true,
+      title: "userImage",
+      dataIndex: "userImage",
+      key: "userImage",
       width: 300,
     },
     {
-      title: "password",
-      dataIndex: "password",
-      key: "password",
+      title: "userName",
+      dataIndex: "userName",
+      key: "userName",
       sorter: true,
+      width: 400,
+    },
+    {
+      title: "passWord",
+      dataIndex: "passWord",
+      key: "passWord",
+      width: 400,
+    },
+    {
+      title: "role",
+      dataIndex: "role",
+      key: "role",
       width: 300,
+      render: (_, record, __) => (
+        <span>{record.role === 1 ? "ADMIN" : "USER"}</span>
+      ),
     },
     {
       title: "tool",
@@ -60,7 +60,7 @@ const AccountTable = (props: Props) => {
       ),
     },
   ];
-  return <Table columns={columns} dataSource={data} bordered />;
+  return <Table columns={columns} dataSource={props.items} bordered />;
 };
 
 export default AccountTable;

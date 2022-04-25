@@ -1,11 +1,10 @@
 import React from "react";
-import { useRecoilState } from "recoil";
+import useBooks from "../../../../common/hook/useBooks";
 import Book from "../../../../components/Book";
-import { globalState } from "../../../../state/appState";
 
 const HomePage = () => {
-  const [stateGlobak, setStateGlobal] = useRecoilState(globalState);
-  React.useEffect(() => {}, []);
+  const { books } = useBooks();
+
   return (
     <>
       <div className="section">
@@ -25,14 +24,9 @@ const HomePage = () => {
       <div id="list-book">
         <h3 className="title-list">DANH MỤC SẢN PHẨM</h3>
         <div className="book-container">
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
-          <Book />
+          {books?.map((item, index) => (
+            <Book key={index} item={item} />
+          ))}
         </div>
       </div>
     </>

@@ -1,17 +1,14 @@
-import React from "react";
-import { useRecoilState } from "recoil";
-import BookTable from "./BookTable";
-import { globalState } from "../../../../state/appState";
 import { Col, Row } from "antd";
 import Title from "antd/lib/typography/Title";
+import React from "react";
+import useBooks from "../../../../common/hook/useBooks";
+import BookTable from "./BookTable";
 type Props = {};
 
 const BookManager = (props: Props) => {
-  const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const { books } = stateGlobal;
+  const { books } = useBooks();
   const onDelete = () => () => {};
   const onEdit = () => () => {};
-
   return (
     <Row justify="center" style={{ marginTop: 60 }}>
       <Col span={22} style={{ backgroundColor: "white" }}>

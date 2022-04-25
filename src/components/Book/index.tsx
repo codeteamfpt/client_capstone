@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-type Props = {};
+import { IBook } from "../../common/type";
+interface Props {
+  item: IBook;
+}
 
-const Book = (props: Props) => {
+const Book = ({ item }: Props) => {
   return (
     <div className="card-item">
       <div className="item">
@@ -10,7 +13,7 @@ const Book = (props: Props) => {
           <img src="/images/mindmap-english-grammar.jpg" alt="" />
         </div>
         <div className="category">
-          <p>Sách tự học tiếng Nhật </p>
+          <p>{item.bookType}</p>
         </div>
         <Link to="/" className="btn-view">
           <p>Xem ngay</p>
@@ -20,11 +23,11 @@ const Book = (props: Props) => {
           <div className="title">
             <Link to="/">
               <br />
-              Mind Map English Grammar – Ngữ pháp tiếng anh bằng sơ đồ tư duy
+              {item.bookName}
             </Link>
           </div>
           <div className="price">
-            <span>190.000</span>
+            <span>{item.bookPrice}</span>
             <span>đ</span>
           </div>
           <button className="buy">Thêm vào giỏ</button>

@@ -9,17 +9,7 @@ interface Props {
   onDelete: (record: any) => () => void;
   onEdit: (record: any) => () => void;
 }
-const data: ICart[] = [
-  {
-    product: "helo",
-  },
-  {
-    product: "helo",
-  },
-  {
-    product: "helo",
-  },
-];
+const data: ICart[] = [];
 const CartTable = (props: Props) => {
   const columns: ColumnsType<ICart> = [
     {
