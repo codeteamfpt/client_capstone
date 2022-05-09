@@ -1,26 +1,39 @@
+import {
+  BookOutlined,
+  LogoutOutlined,
+  QuestionCircleOutlined,
+  SettingOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Layout, Menu, Popconfirm } from "antd";
-import SubMenu from "antd/lib/menu/SubMenu";
 import React, { useState } from "react";
 import { Outlet } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  BookOutlined,
-  UserOutlined,
-  ShoppingCartOutlined,
-  SettingOutlined,
-  QuestionCircleOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { useRecoilState } from "recoil";
+import { globalState } from "../../state/appState";
+import { NotificationSuccess } from "../Notification";
 const { Header, Content, Footer, Sider } = Layout;
 type Props = {};
 
 const SideBar = (props: Props) => {
+  const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
+  const { carts } = stateGlobal;
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   const onCollapse = () => {
     setCollapsed(!collapsed);
   };
-
+  const onLogout = () => {
+    localStorage.removeItem("userInfo");
+    setStateGlobal({
+      ...stateGlobal,
+      userInfo: undefined,
+      cartNumber: carts?.length || 0,
+    });
+    NotificationSuccess("Thông báo", "Bạn đã đăng xuất");
+    navigate("/");
+  };
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
@@ -64,9 +77,7 @@ const SideBar = (props: Props) => {
             okText="Có"
             cancelText="Không"
             placement="left"
-            onConfirm={() => {
-              navigate("/");
-            }}
+            onConfirm={onLogout}
             icon={<QuestionCircleOutlined style={{ color: "red" }} />}
             style={{ position: "absolute", top: 0, right: 0 }}
           >

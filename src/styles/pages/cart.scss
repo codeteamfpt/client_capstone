@@ -41,7 +41,6 @@
               border-color: black;
               color: black;
             }
-            border-radius: 50%;
             border: 2px solid #bbbbbb;
             color: #bbbbbb;
             background-color: #ececec;
@@ -56,6 +55,9 @@
           .name {
             align-self: center !important;
             padding-left: 30px;
+            max-width: 180px;
+            overflow: hidden;
+            text-align: left;
           }
         }
         .quantity {

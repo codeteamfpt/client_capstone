@@ -3,6 +3,7 @@ import Title from "antd/lib/typography/Title";
 import React from "react";
 import { useRecoilState } from "recoil";
 import useAccounts from "../../../../common/hook/useAccounts";
+import { IAccount } from "../../../../common/type";
 import { globalState } from "../../../../state/appState";
 import AccountTable from "./AccountTable";
 
@@ -10,8 +11,8 @@ type Props = {};
 
 const AccountManager = (props: Props) => {
   const { accounts } = useAccounts();
-  const onDelete = () => () => {};
-  const onEdit = () => () => {};
+  const onDelete = (record: IAccount) => () => {};
+  const onEdit = (record: IAccount) => () => {};
 
   return (
     <Row justify="center" style={{ marginTop: 60 }}>

@@ -1,11 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import useAddToCart from "../../common/hook/useAddToCart";
+import useCarts from "../../common/hook/useCart";
 import { IBook } from "../../common/type";
+import { globalState } from "../../state/appState";
+import { NotificationSuccess } from "../Notification";
 interface Props {
   item: IBook;
 }
 
 const Book = ({ item }: Props) => {
+  const [stateGlobal, _] = useRecoilState(globalState);
+  const { userInfo } = stateGlobal;
+  const { addToCart } = useAddToCart();
+  const { getCartItems } = useCarts();
+
+  const onAddToCart = async () => {
+    await addToCart({
+      accountId: userInfo?.accountId || "",
+      bookId: item.bookId || "",
+      numberBook: 1,
+    });
+    await getCartItems({ accountId: userInfo?.accountId });
+    NotificationSuccess(
+      "Thông báo",
+      `Sản phẩm: ${item.bookName} - được thêm vào giỏ hàng`
+    );
+  };
   return (
     <div className="card-item">
       <div className="item">
@@ -15,7 +37,7 @@ const Book = ({ item }: Props) => {
         <div className="category">
           <p>{item.bookType}</p>
         </div>
-        <Link to="/" className="btn-view">
+        <Link to={`/book-detail/${item.bookId}`} className="btn-view">
           <p>Xem ngay</p>
         </Link>
         <div className="card-content">
@@ -30,7 +52,9 @@ const Book = ({ item }: Props) => {
             <span>{item.bookPrice}</span>
             <span>đ</span>
           </div>
-          <button className="buy">Thêm vào giỏ</button>
+          <button className="buy" onClick={onAddToCart}>
+            Thêm vào giỏ
+          </button>
         </div>
       </div>
     </div>

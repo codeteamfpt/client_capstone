@@ -4,23 +4,29 @@ export interface IHeader {
   url?: string;
 }
 export interface IBook {
+  bookId?: string;
+  bookName?: string;
+  bookInfo?: string;
+  bookPrice?: number;
+  bookType?: string;
+  bookImage?: string;
+}
+export interface IAccount {
+  accountId?: string;
+  userName?: string;
+  passWord?: string;
+  role?: number;
+  userImage?: string;
+}
+
+export interface ICart {
   bookId: string;
   bookName: string;
   bookInfo: string;
   bookPrice: number;
   bookType: string;
   image: string;
-}
-export interface IAccount {
-  accountId: string;
-  userName: string;
-  passWord: string;
-  role: number;
-  userImage: string;
-}
-
-export interface ICart {
-  books: IBook[];
+  numberBook: number;
 }
 
 export interface InputTypeCart {
@@ -41,4 +47,15 @@ export interface InputTypeAccount {
   passWord: string;
   role: number;
   userImage: string;
+}
+export interface IResponseData {
+  status: {
+    code: string;
+    message: string;
+  };
+}
+
+export interface IRemoveCartItemInput {
+  bookId: string;
+  accountId: string;
 }

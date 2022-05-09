@@ -5,6 +5,16 @@
   &.show {
     display: block;
   }
+  .ant-form-item-control-input {
+    align-items: unset;
+  }
+  button {
+    opacity: 1;
+    transition: all 0.3s ease;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
   .wrap {
     .close {
       width: 20px;
@@ -29,15 +39,12 @@
       div {
         display: flex;
         flex-direction: column;
-        padding: 10px 0;
         label {
           padding: 10px 0;
         }
         input {
-          height: 40px;
           font-size: 18px;
           line-height: 40px;
-          padding: 10px;
         }
       }
       .title {

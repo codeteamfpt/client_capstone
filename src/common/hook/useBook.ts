@@ -2,19 +2,21 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import apis from "../../services/apis";
 import { globalState } from "../../state/appState";
+import { IBook } from "../type";
 
-const useBooks = () => {
+const useBook = () => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const getBooks = async () => {
-    const books = await apis.getAllBooks().then((data) => data);
+  const getBook = async (data: IBook) => {
+    const book = await apis.getBook(data).then((data) => data);
     setStateGlobal({
       ...stateGlobal,
-      books: books,
+      book: book,
     });
+    return book;
   };
   return {
-    getBooks,
+    getBook,
   };
 };
 
-export default useBooks;
+export default useBook;

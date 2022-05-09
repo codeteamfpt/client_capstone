@@ -1,5 +1,6 @@
 #header {
   background-color: #044d72;
+  min-height: 130px;
   .overlay {
     display: none;
     background-color: black;
@@ -38,6 +39,9 @@
       justify-content: flex-end;
       padding-top: 10px;
       padding-right: 20%;
+      position: fixed;
+      z-index: 9999;
+      right: 0;
       .tool-item {
         margin: 0 7px;
         box-shadow: -2px 2px 8px #888888;
