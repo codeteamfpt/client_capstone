@@ -58,7 +58,14 @@ const BookTable = (props: Props) => {
       ),
     },
   ];
-  return <Table columns={columns} dataSource={props.items} bordered />;
+  return (
+    <Table
+      rowKey="bookId"
+      columns={columns}
+      dataSource={props.items}
+      bordered
+    />
+  );
 };
 
 export default BookTable;

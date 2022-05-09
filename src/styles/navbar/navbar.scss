@@ -5,7 +5,13 @@
     text-align: center;
     padding-top: 30px;
     padding-right: 20%;
+    position: relative;
+    top: 50px;
+    z-index: 10;
     .nav-item {
+      &:first-child {
+        margin-right: 50%;
+      }
       a {
         color: white;
         padding: 10px;

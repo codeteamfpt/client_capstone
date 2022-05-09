@@ -1,5 +1,11 @@
-import React from "react";
-import { IAccount, IBook, ICart } from "../common/type";
+import {
+  IAccount,
+  IBook,
+  ICart,
+  InputTypeCart,
+  IRemoveCartItemInput,
+  IResponseData,
+} from "../common/type";
 import axiosClient from "./api-caller";
 
 const apis = {
@@ -7,69 +13,65 @@ const apis = {
     const url = process.env.REACT_APP_API_SOURCE + "book/getall";
     return axiosClient.get(url);
   },
-  getBook: async (id: string): Promise<IBook> => {
-    const url = process.env.REACT_APP_API_SOURCE + "book/get";
-    return axiosClient.get(url, { params: id });
+  getBook: async (data: IBook): Promise<IBook> => {
+    const url = process.env.REACT_APP_API_SOURCE + "book/getone";
+    return axiosClient.post(url, data);
   },
-  createBook: async (data: any): Promise<IBook> => {
-    const url = process.env.REACT_APP_API_SOURCE + "book/create";
-    return axiosClient.post(url, { params: data });
+  createBook: async (data: IBook): Promise<any> => {
+    const url = process.env.REACT_APP_API_SOURCE + "book/add";
+    return axiosClient.post(url, data);
   },
-  updateBook: async (data: any): Promise<IBook> => {
+  updateBook: async (data: IBook): Promise<any> => {
     const url = process.env.REACT_APP_API_SOURCE + "book/update";
-    return axiosClient.put(url, { params: data });
+    return axiosClient.post(url, data);
   },
-  deleteBook: async (id: string): Promise<IBook> => {
+  removeBook: async (data: IBook): Promise<any> => {
     const url = process.env.REACT_APP_API_SOURCE + "book/delete";
-    return axiosClient.delete(url, { params: id });
+    return axiosClient.post(url, data);
   },
-  getAllCarts: async (params: any): Promise<ICart[]> => {
+  getAllCartItems: async (data: IAccount): Promise<ICart[]> => {
     const url = process.env.REACT_APP_API_SOURCE + "cart/getall";
-    return axiosClient.get(url, { params });
+    return axiosClient.post(url, data);
   },
-  getCart: async (id: string): Promise<ICart> => {
-    const url = "";
-    return axiosClient.get(url, { params: id });
-  },
-  createCart: async (data: any): Promise<ICart> => {
+  createCart: async (data: IAccount): Promise<ICart> => {
     const url = process.env.REACT_APP_API_SOURCE + "cart/create";
-    return axiosClient.post(url, { params: data });
+    return axiosClient.post(url, data);
   },
-  updateCart: async (data: any): Promise<ICart> => {
-    const url = "";
-    return axiosClient.put(url, { params: data });
+  addToCart: async (data: InputTypeCart): Promise<ICart> => {
+    const url = process.env.REACT_APP_API_SOURCE + "cart/add";
+    return axiosClient.post(url, data);
   },
-  deleteCart: async (id: string): Promise<ICart> => {
-    const url = "";
-    return axiosClient.delete(url, { params: id });
+  removeItemCart: async (data: IRemoveCartItemInput): Promise<any> => {
+    const url = process.env.REACT_APP_API_SOURCE + "cart/delete";
+    return axiosClient.post(url, data);
   },
   getAllAccounts: async (): Promise<IAccount[]> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/all";
     return axiosClient.get(url);
   },
-  getAccount: async (id: string): Promise<IAccount> => {
+  getAccount: async (data: IAccount): Promise<IAccount> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/get";
-    return axiosClient.get(url, { params: id });
+    return axiosClient.post(url, data);
   },
-  createAccount: async (data: any): Promise<IAccount> => {
+  createAccount: async (data: IAccount): Promise<IAccount> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/regis";
-    return axiosClient.post(url, { params: data });
+    return axiosClient.post(url, data);
   },
-  updateAccount: async (data: any): Promise<IAccount> => {
+  updateAccount: async (data: IAccount): Promise<IAccount> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/update";
-    return axiosClient.put(url, { params: data });
+    return axiosClient.post(url, data);
   },
-  deleteAccount: async (id: string): Promise<IAccount> => {
-    const url = "";
-    return axiosClient.delete(url, { params: id });
+  deleteAccount: async (data: IAccount): Promise<IAccount> => {
+    const url = process.env.REACT_APP_API_SOURCE + "account/delete";
+    return axiosClient.post(url, data);
   },
-  login: async (params: any): Promise<IAccount> => {
+  login: async (data: IAccount): Promise<IAccount> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/check";
-    return axiosClient.get(url, { params: { ...params } });
+    return axiosClient.post(url, data);
   },
-  register: async (params: any): Promise<IAccount> => {
+  register: async (data: IAccount): Promise<IResponseData> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/regis";
-    return axiosClient.get(url, { params: { ...params } });
+    return axiosClient.post(url, data);
   },
 };
 

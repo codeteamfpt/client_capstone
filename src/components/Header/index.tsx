@@ -1,18 +1,43 @@
+import { Popconfirm } from "antd";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import useCarts from "../../common/hook/useCart";
+import { globalState } from "../../state/appState";
 import Banner from "../Banner";
 import Login from "../Login";
 import Navbar from "../Navbar";
+import { NotificationSuccess } from "../Notification";
 
 const Header = () => {
   const { pathname } = useLocation();
   const [show, setShow] = React.useState<boolean>(false);
+  const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
+  const { userInfo, carts, cartNumber } = stateGlobal;
+  const { getCartItems } = useCarts();
+
+  React.useEffect(() => {
+    if (cartNumber === 0) {
+      getCartItems({ accountId: userInfo?.accountId });
+    }
+  }, [cartNumber]);
   const toggleModal = () => {
     setShow(!show);
   };
   const closeModal = () => {
     setShow(false);
   };
+  const onLogout = () => {
+    localStorage.removeItem("userInfo");
+    setStateGlobal({
+      ...stateGlobal,
+      userInfo: undefined,
+      carts: undefined,
+      cartNumber: 0,
+    });
+    NotificationSuccess("Thông báo", "Bạn đã đăng xuất");
+  };
+
   return (
     <div id="header">
       <label
@@ -40,18 +65,40 @@ const Header = () => {
           </div>
           <div className="cart-button tool-item">
             <Link to="/cart">
-              <p>9</p>
+              <p>{cartNumber}</p>
               <img className="cart" src="/images/shopping-cart.png" alt="" />
             </Link>
           </div>
           <div className="profile-button tool-item">
-            <img
-              className="profile"
-              src="/images/user.png"
-              alt=""
-              onClick={toggleModal}
-            />
-            <Login closeModal={closeModal} show={show} />
+            {Object.keys(userInfo || {}).length === 0 ? (
+              <>
+                <img
+                  className="profile"
+                  src="/images/user.png"
+                  alt=""
+                  onClick={toggleModal}
+                />
+                <Login closeModal={closeModal} show={show} />
+              </>
+            ) : (
+              <>
+                <Popconfirm
+                  title="Bạn có muốn đăng xuất không?"
+                  onConfirm={onLogout}
+                  onCancel={() => {}}
+                  okText="Có"
+                  cancelText="Không"
+                  placement="bottom"
+                >
+                  <img
+                    className="profile"
+                    src="/images/logout.png"
+                    alt=""
+                    title="Đăng xuất"
+                  />
+                </Popconfirm>
+              </>
+            )}
           </div>
         </div>
         <Navbar />
