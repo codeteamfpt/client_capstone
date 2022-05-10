@@ -3,6 +3,7 @@ import Title from "antd/lib/typography/Title";
 import React from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState } from "recoil";
+import useBook from "../../../../common/hook/useBook";
 import useBooks from "../../../../common/hook/useBooks";
 import useRemoveBook from "../../../../common/hook/useRemoveBook";
 import { IBook } from "../../../../common/type";
@@ -14,7 +15,9 @@ const BookManager = (props: Props) => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
   const { books } = stateGlobal;
   const { getBooks } = useBooks();
+  const { getBook } = useBook();
   const { removeBook } = useRemoveBook();
+
   const navigate = useNavigate();
   React.useEffect(() => {
     if (!books) {
@@ -25,7 +28,9 @@ const BookManager = (props: Props) => {
     await removeBook(record);
     await getBooks();
   };
-  const onEdit = (record: IBook) => () => {
+  const onEdit = (record: IBook) => async () => {
+    await getBook({ bookId: record.bookId });
+
     navigate(`/admin-book/update/${record.bookId}`);
   };
   const onCreate = () => {

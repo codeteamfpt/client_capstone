@@ -28,7 +28,7 @@ const Login = (props: Props) => {
       role: 0,
       userImage: "none",
     });
-    if (res.status.code === "00") {
+    if (res) {
       closeModal();
     }
   };

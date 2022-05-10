@@ -19,7 +19,7 @@ const BookForm = (props: Props) => {
     bookName: book?.bookName || "",
     bookInfo: book?.bookInfo || "",
     bookPrice: book?.bookPrice || 0,
-    bookType: book?.bookId || "",
+    bookType: book?.bookType || "",
     bookImage: book?.bookImage || "",
   };
   return (
@@ -49,6 +49,9 @@ const BookForm = (props: Props) => {
                 <Input />
               </Form.Item>
             </Col>
+            <Form.Item name="bookId">
+              <Input hidden />
+            </Form.Item>
             <Col span={12}>
               <Row justify="center">
                 <Col span={24}>

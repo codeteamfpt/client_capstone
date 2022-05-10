@@ -9,21 +9,10 @@ import BookForm from "../book-form/BookForm";
 type Props = {};
 
 const UpdateBook = (props: Props) => {
-  let { bookId: id } = useParams<"bookId">();
   const { getBooks } = useBooks();
-  const { getBook } = useBook();
-
   const { updateBook } = useUpdateBook();
   const navigate = useNavigate();
-  React.useEffect(() => {
-    if (id) {
-      const call = async () => {
-        await getBook({ bookId: id || "" });
-      };
-      call();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+
   const onSave = async (values: IBook) => {
     await updateBook(values);
     await getBooks();

@@ -57,11 +57,11 @@ const apis = {
     const url = process.env.REACT_APP_API_SOURCE + "account/regis";
     return axiosClient.post(url, data);
   },
-  updateAccount: async (data: IAccount): Promise<IAccount> => {
+  updateAccount: async (data: IAccount): Promise<any> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/update";
     return axiosClient.post(url, data);
   },
-  deleteAccount: async (data: IAccount): Promise<IAccount> => {
+  removeAccount: async (data: IAccount): Promise<any> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/delete";
     return axiosClient.post(url, data);
   },

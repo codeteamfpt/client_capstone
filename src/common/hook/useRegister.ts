@@ -10,11 +10,10 @@ const useRegister = () => {
   const { createCart } = useCreateCart();
   const register = async (userInfo: IAccount) => {
     const res = await apis.register(userInfo).then((data) => data);
-    if (res.status.code === "00") {
+    if (res) {
       createCart({ accountId: userInfo.accountId });
       NotificationSuccess("Thông báo", "Đăng kí thành công");
-    }
-    if (res.status.code === "01") {
+    } else {
       NotificationError("Thông báo", "Đăng kí Thất bại");
     }
     return res;

@@ -60,7 +60,14 @@ const AccountTable = (props: Props) => {
       ),
     },
   ];
-  return <Table columns={columns} dataSource={props.items} bordered />;
+  return (
+    <Table
+      rowKey="accountId"
+      columns={columns}
+      dataSource={props.items}
+      bordered
+    />
+  );
 };
 
 export default AccountTable;
