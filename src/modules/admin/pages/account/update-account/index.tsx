@@ -8,12 +8,21 @@ import AccountForm from "../account-form";
 
 type Props = {};
 
-const UpdateBook = (props: Props) => {
+const UpdateAccount = (props: Props) => {
+  let { accountId: id } = useParams<"accountId">();
   const { getAccounts } = useAccounts();
+  const { getAccount, account } = useAccount();
 
   const { updateAccount } = useUpdateAccount();
   const navigate = useNavigate();
-
+  // lỗi get book delay
+  React.useEffect(() => {
+    if (id) {
+      getAccount({ accountId: id || "" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+  console.log(account);
   const onSave = async (values: IAccount) => {
     await updateAccount(values);
     await getAccounts();
@@ -24,8 +33,9 @@ const UpdateBook = (props: Props) => {
       title="Cập nhật người dùng"
       typeForm="update"
       onSave={onSave}
+      item={account}
     />
   );
 };
 
-export default UpdateBook;
+export default UpdateAccount;

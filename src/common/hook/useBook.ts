@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import apis from "../../services/apis";
 import { globalState } from "../../state/appState";
@@ -15,6 +15,7 @@ const useBook = () => {
     return book;
   };
   return {
+    book: stateGlobal.book,
     getBook,
   };
 };

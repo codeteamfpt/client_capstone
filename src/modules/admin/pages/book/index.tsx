@@ -15,7 +15,6 @@ const BookManager = (props: Props) => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
   const { books } = stateGlobal;
   const { getBooks } = useBooks();
-  const { getBook } = useBook();
   const { removeBook } = useRemoveBook();
 
   const navigate = useNavigate();
@@ -29,8 +28,6 @@ const BookManager = (props: Props) => {
     await getBooks();
   };
   const onEdit = (record: IBook) => async () => {
-    await getBook({ bookId: record.bookId });
-
     navigate(`/admin-book/update/${record.bookId}`);
   };
   const onCreate = () => {

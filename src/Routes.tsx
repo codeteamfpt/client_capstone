@@ -1,7 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import useCarts from "./common/hook/useCart";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminLayout from "./common/layout/AdminLayout";
 import EmptyLayout from "./common/layout/EmptyLayout";
 import AccountManager from "./modules/admin/pages/account";
@@ -15,7 +13,6 @@ import Cart from "./modules/client/pages/cart";
 import HomePage from "./modules/client/pages/home-page";
 import PayInfo from "./modules/client/pages/pay-info";
 import UserProfile from "./modules/client/pages/user-profile";
-import { globalState } from "./state/appState";
 
 function AppRoutes() {
   return (
@@ -35,7 +32,10 @@ function AppRoutes() {
             path="/admin-account/update/:accountId"
             element={<UpdateAccount />}
           />
-          <Route path="/admin-cart" element={<CartManager />} />
+          <Route
+            path="/admin-account/user-cart/:accountId"
+            element={<CartManager />}
+          />
           <Route path="/admin-book" element={<BookManager />} />
           <Route path="/admin-book/add" element={<AddBook />} />
           <Route path="/admin-book/update/:bookId" element={<UpdateBook />} />

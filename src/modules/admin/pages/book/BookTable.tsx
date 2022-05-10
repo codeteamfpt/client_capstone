@@ -12,39 +12,39 @@ interface Props {
 const BookTable = (props: Props) => {
   const columns: ColumnsType<IBook> = [
     {
-      title: "No",
-      dataIndex: "#",
+      title: "STT",
+      dataIndex: "bookId",
       key: "#",
       width: 60,
     },
     {
-      title: "Image",
+      title: "Hình ảnh",
       dataIndex: "bookImage",
       key: "bookImage",
       width: 200,
     },
     {
-      title: "Name",
+      title: "Tên sách",
       dataIndex: "bookName",
       key: "bookName",
       sorter: true,
       width: 500,
     },
     {
-      title: "Price",
+      title: "Giá sách",
       dataIndex: "bookPrice",
       key: "price",
       sorter: true,
       width: 120,
     },
     {
-      title: "Type",
+      title: "Loại sách",
       dataIndex: "bookType",
       key: "bookType",
       width: 300,
     },
     {
-      title: "Tool",
+      title: "",
       dataIndex: "tool",
       key: "tool",
       width: 120,

@@ -69,7 +69,7 @@ const apis = {
     const url = process.env.REACT_APP_API_SOURCE + "account/check";
     return axiosClient.post(url, data);
   },
-  register: async (data: IAccount): Promise<IResponseData> => {
+  register: async (data: IAccount): Promise<IAccount> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/regis";
     return axiosClient.post(url, data);
   },

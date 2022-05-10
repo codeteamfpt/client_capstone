@@ -14,6 +14,7 @@ const useAccount = () => {
     return account;
   };
   return {
+    account: stateGlobal.account,
     getAccount,
   };
 };

@@ -4,6 +4,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import useAccount from "../../../../common/hook/useAccount";
 import useAccounts from "../../../../common/hook/useAccounts";
+import useCarts from "../../../../common/hook/useCart";
 import useRemoveAccount from "../../../../common/hook/useRemoveAccount";
 import { IAccount } from "../../../../common/type";
 import AccountTable from "./AccountTable";
@@ -13,21 +14,25 @@ type Props = {};
 const AccountManager = (props: Props) => {
   const { accounts, getAccounts } = useAccounts();
   const { removeAccount } = useRemoveAccount();
-  const { getAccount } = useAccount();
-
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    if (!accounts) {
+      getAccounts();
+    }
+  }, [accounts]);
   const onDelete = (record: IAccount) => async () => {
     await removeAccount(record);
     await getAccounts();
   };
   const onEdit = (record: IAccount) => async () => {
-    await getAccount({ accountId: record.accountId });
-
     navigate(`/admin-account/update/${record.accountId}`);
   };
   const onCreate = () => {
     navigate("/admin-account/add");
+  };
+  const onShowCart = (record: IAccount) => async () => {
+    navigate(`/admin-account/user-cart/${record.accountId}`);
   };
   return (
     <Row justify="center" style={{ marginTop: 60 }}>
@@ -54,6 +59,7 @@ const AccountManager = (props: Props) => {
                 items={accounts}
                 onDelete={onDelete}
                 onEdit={onEdit}
+                onShowCart={onShowCart}
               />
             </Col>
           </Col>

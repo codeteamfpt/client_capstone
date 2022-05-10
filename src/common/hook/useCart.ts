@@ -14,6 +14,7 @@ const useCarts = () => {
     });
   };
   return {
+    carts: stateGlobal.carts,
     getCartItems,
   };
 };

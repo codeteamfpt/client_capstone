@@ -1,44 +1,51 @@
-import React from "react";
 import { Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
+import React from "react";
 import { ICart } from "../../../../common/type";
-import TableRowAction from "../../components/TableRowAction";
 
 interface Props {
   items?: ICart[];
-  onDelete: (record: any) => () => void;
-  onEdit: (record: any) => () => void;
 }
 const data: ICart[] = [];
 const CartTable = (props: Props) => {
   const columns: ColumnsType<ICart> = [
     {
-      title: "No",
-      dataIndex: "#",
+      title: "STT",
+      dataIndex: "bookId",
       key: "#",
       width: 60,
     },
     {
-      title: "product",
-      dataIndex: "product",
-      key: "product",
+      title: "Hình ảnh",
+      dataIndex: "bookImage",
+      key: "bookImage",
+      width: 200,
+    },
+    {
+      title: "Tên sách",
+      dataIndex: "bookName",
+      key: "bookName",
       sorter: true,
+      width: 500,
+    },
+    {
+      title: "Giá sách",
+      dataIndex: "bookPrice",
+      key: "price",
+      sorter: true,
+      width: 120,
+    },
+    {
+      title: "Loại sách",
+      dataIndex: "bookType",
+      key: "bookType",
       width: 300,
     },
-
     {
-      title: "tool",
-      dataIndex: "tool",
-      key: "tool",
-      width: 120,
-      render: (_: any, record: ICart) => (
-        <TableRowAction
-          title="Bạn có chắc chắn muốn xóa không?"
-          record={record}
-          onDelete={props.onDelete}
-          onEdit={props.onEdit}
-        />
-      ),
+      title: "Số quyển",
+      dataIndex: "numberBook",
+      key: "numberBook",
+      width: 300,
     },
   ];
   return <Table columns={columns} dataSource={data} bordered />;

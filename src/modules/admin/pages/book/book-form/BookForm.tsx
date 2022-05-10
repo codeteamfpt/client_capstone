@@ -1,26 +1,23 @@
-import { Button, Form, Input, InputNumber, Row, Col, Typography } from "antd";
+import { Button, Col, Form, Input, InputNumber, Row, Typography } from "antd";
 import React from "react";
-import { useRecoilState } from "recoil";
 import { IBook } from "../../../../../common/type";
-import { globalState } from "../../../../../state/appState";
 
 type Props = {
   typeForm?: string;
   onSave?: (values: IBook) => void;
   title?: string;
+  item?: IBook;
 };
 
 const BookForm = (props: Props) => {
-  const [stateGlobal, _] = useRecoilState(globalState);
-  const { book } = stateGlobal;
-  const { onSave, typeForm, title } = props;
+  const { onSave, typeForm, title, item } = props;
   const initialValues: IBook = {
-    bookId: book?.bookId || "",
-    bookName: book?.bookName || "",
-    bookInfo: book?.bookInfo || "",
-    bookPrice: book?.bookPrice || 0,
-    bookType: book?.bookType || "",
-    bookImage: book?.bookImage || "",
+    bookId: item?.bookId || "",
+    bookName: item?.bookName || "",
+    bookInfo: item?.bookInfo || "",
+    bookPrice: item?.bookPrice || 0,
+    bookType: item?.bookType || "",
+    bookImage: item?.bookImage || "",
   };
   return (
     <Row

@@ -1,25 +1,22 @@
-import { Button, Col, Form, Input, Row, Select, Typography } from "antd";
+import { Button, Col, Form, Input, Row, Typography } from "antd";
 import React from "react";
-import { useRecoilState } from "recoil";
 import { IAccount } from "../../../../../common/type";
-import { globalState } from "../../../../../state/appState";
 
 type Props = {
   typeForm?: string;
   onSave?: (values: IAccount) => void;
   title?: string;
+  item?: IAccount;
 };
 
 const AccountForm = (props: Props) => {
-  const [stateGlobal, _] = useRecoilState(globalState);
-  const { account } = stateGlobal;
-  const { onSave, typeForm, title } = props;
+  const { onSave, typeForm, title, item } = props;
   const initialValues: IAccount = {
-    // accountId: account?.accountId || "",
-    userName: account?.userName || "",
-    passWord: account?.passWord || "",
+    accountId: item?.accountId || "",
+    userName: item?.userName || "",
+    passWord: item?.passWord || "",
     role: 0,
-    userImage: account?.userImage || "",
+    userImage: item?.userImage || "",
   };
   return (
     <Row

@@ -11,7 +11,7 @@ const useRegister = () => {
   const register = async (userInfo: IAccount) => {
     const res = await apis.register(userInfo).then((data) => data);
     if (res) {
-      createCart({ accountId: userInfo.accountId });
+      createCart({ accountId: res.accountId });
       NotificationSuccess("Thông báo", "Đăng kí thành công");
     } else {
       NotificationError("Thông báo", "Đăng kí Thất bại");
