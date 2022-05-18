@@ -6,8 +6,7 @@ import { ICart } from "../../../../common/type";
 interface Props {
   items?: ICart[];
 }
-const data: ICart[] = [];
-const CartTable = (props: Props) => {
+const CartTable = ({ items }: Props) => {
   const columns: ColumnsType<ICart> = [
     {
       title: "STT",
@@ -48,7 +47,9 @@ const CartTable = (props: Props) => {
       width: 300,
     },
   ];
-  return <Table columns={columns} dataSource={data} bordered />;
+  return (
+    <Table rowKey="bookId" columns={columns} dataSource={items} bordered />
+  );
 };
 
 export default CartTable;

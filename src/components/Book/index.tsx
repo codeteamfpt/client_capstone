@@ -37,7 +37,7 @@ const Book = ({ item }: Props) => {
         <div className="category">
           <p>{item.bookType}</p>
         </div>
-        <Link to={`/book-detail/${item.bookId}`} className="btn-view">
+        <Link to={`/book-info/${item.bookId}`} className="btn-view">
           <p>Xem ngay</p>
         </Link>
         <div className="card-content">
