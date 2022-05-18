@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 
 const EmptyLayout = () => {
   return (
-    <div id="layout">
+    <div id="layout" style={{ backgroundColor: "#f4f7f9" }}>
       <Header />
       <Outlet />
       <Footer />

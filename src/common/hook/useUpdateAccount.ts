@@ -8,7 +8,7 @@ import { IAccount } from "../type";
 const useUpdateAccount = () => {
   const updateAccount = async (data: IAccount) => {
     const res = await apis.updateAccount(data).then((data) => data);
-    if (res.status.code === "000") {
+    if (res.status.code === "00") {
       NotificationSuccess("Thông báo", "Cập nhật người dùng thành công");
     } else {
       NotificationError("Thông báo", "Cập nhật người dùng thất bại");

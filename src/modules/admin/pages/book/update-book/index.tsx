@@ -15,14 +15,12 @@ const UpdateBook = (props: Props) => {
 
   const { updateBook } = useUpdateBook();
   const navigate = useNavigate();
-  // lỗi get book delay
   React.useEffect(() => {
     if (id) {
       getBook({ bookId: id || "" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  console.log(book);
 
   const onSave = async (values: IBook) => {
     await updateBook(values);

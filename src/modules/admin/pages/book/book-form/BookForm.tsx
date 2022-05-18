@@ -11,6 +11,7 @@ type Props = {
 
 const BookForm = (props: Props) => {
   const { onSave, typeForm, title, item } = props;
+  const [form] = Form.useForm();
   const initialValues: IBook = {
     bookId: item?.bookId || "",
     bookName: item?.bookName || "",
@@ -19,6 +20,9 @@ const BookForm = (props: Props) => {
     bookType: item?.bookType || "",
     bookImage: item?.bookImage || "",
   };
+  React.useEffect(() => {
+    form.setFieldsValue(initialValues);
+  }, [initialValues]);
   return (
     <Row
       justify="center"
@@ -30,9 +34,9 @@ const BookForm = (props: Props) => {
       <Col span={20}>
         <Form
           name="basic"
+          form={form}
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 18 }}
-          initialValues={initialValues}
           onFinish={onSave}
           autoComplete="off"
         >

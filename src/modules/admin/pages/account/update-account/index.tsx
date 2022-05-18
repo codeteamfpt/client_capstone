@@ -15,18 +15,16 @@ const UpdateAccount = (props: Props) => {
 
   const { updateAccount } = useUpdateAccount();
   const navigate = useNavigate();
-  // lỗi get book delay
   React.useEffect(() => {
     if (id) {
       getAccount({ accountId: id || "" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  console.log(account);
   const onSave = async (values: IAccount) => {
     await updateAccount(values);
     await getAccounts();
-    navigate("/admin-book");
+    navigate("/admin-account");
   };
   return (
     <AccountForm

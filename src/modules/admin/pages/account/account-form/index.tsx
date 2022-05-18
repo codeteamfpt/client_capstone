@@ -1,5 +1,5 @@
 import { Button, Col, Form, Input, Row, Typography } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { IAccount } from "../../../../../common/type";
 
 type Props = {
@@ -11,6 +11,8 @@ type Props = {
 
 const AccountForm = (props: Props) => {
   const { onSave, typeForm, title, item } = props;
+  const [form] = Form.useForm();
+
   const initialValues: IAccount = {
     accountId: item?.accountId || "",
     userName: item?.userName || "",
@@ -18,6 +20,10 @@ const AccountForm = (props: Props) => {
     role: 0,
     userImage: item?.userImage || "",
   };
+
+  useEffect(() => {
+    form.setFieldsValue(initialValues);
+  }, [initialValues]);
   return (
     <Row
       justify="center"
@@ -29,9 +35,9 @@ const AccountForm = (props: Props) => {
       <Col span={20}>
         <Form
           name="basic"
+          form={form}
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
-          initialValues={initialValues}
           onFinish={onSave}
           autoComplete="off"
         >

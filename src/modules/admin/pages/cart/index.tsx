@@ -2,9 +2,7 @@ import { Col, Row } from "antd";
 import Title from "antd/lib/typography/Title";
 import React from "react";
 import { useParams } from "react-router";
-import { useRecoilState } from "recoil";
 import useCarts from "../../../../common/hook/useCart";
-import { globalState } from "../../../../state/appState";
 import CartTable from "./CartTable";
 
 type Props = {};
@@ -12,7 +10,6 @@ type Props = {};
 const CartManager = (props: Props) => {
   const { accountId: id } = useParams<"accountId">();
   const { getCartItems, carts } = useCarts();
-  // lỗi get book delay
   React.useEffect(() => {
     if (id) {
       getCartItems({ accountId: id || "" });

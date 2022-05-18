@@ -3,7 +3,6 @@ import Title from "antd/lib/typography/Title";
 import React from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState } from "recoil";
-import useBook from "../../../../common/hook/useBook";
 import useBooks from "../../../../common/hook/useBooks";
 import useRemoveBook from "../../../../common/hook/useRemoveBook";
 import { IBook } from "../../../../common/type";

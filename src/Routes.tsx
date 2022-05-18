@@ -9,6 +9,7 @@ import BookManager from "./modules/admin/pages/book";
 import AddBook from "./modules/admin/pages/book/add-book";
 import UpdateBook from "./modules/admin/pages/book/update-book";
 import CartManager from "./modules/admin/pages/cart";
+import BookInfo from "./modules/client/pages/book-info";
 import Cart from "./modules/client/pages/cart";
 import HomePage from "./modules/client/pages/home-page";
 import PayInfo from "./modules/client/pages/pay-info";
@@ -22,7 +23,8 @@ function AppRoutes() {
           <Route path="" element={<HomePage />} />
           <Route path="cart" element={<Cart />} />
           <Route path="user-profile" element={<UserProfile />} />
-          <Route path="/pay-info" element={<PayInfo />} />
+          <Route path="pay-info" element={<PayInfo />} />
+          <Route path="book-info" element={<BookInfo />} />
         </Route>
         <Route path="/" element={<AdminLayout />}>
           <Route path="/admin" element={<BookManager />} />
