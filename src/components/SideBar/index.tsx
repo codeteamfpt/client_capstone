@@ -55,14 +55,7 @@ const SideBar = (props: Props) => {
           <Menu.Item key="1" icon={<BookOutlined />} style={{ marginTop: 0 }}>
             <Link to="/admin-book">Quản lí sách</Link>
           </Menu.Item>
-          <Menu.Item
-            key="2"
-            icon={<ShoppingCartOutlined />}
-            style={{ marginTop: 0 }}
-          >
-            <Link to="/admin-cart">Quản lí giỏ hàng</Link>
-          </Menu.Item>
-          <Menu.Item key="3" icon={<UserOutlined />} style={{ marginTop: 0 }}>
+          <Menu.Item key="2" icon={<UserOutlined />} style={{ marginTop: 0 }}>
             <Link to="/admin-account">Quản lí tài khoản</Link>
           </Menu.Item>
         </Menu>

@@ -1,7 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import useCarts from "./common/hook/useCart";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminLayout from "./common/layout/AdminLayout";
 import EmptyLayout from "./common/layout/EmptyLayout";
 import AccountManager from "./modules/admin/pages/account";
@@ -11,11 +9,11 @@ import BookManager from "./modules/admin/pages/book";
 import AddBook from "./modules/admin/pages/book/add-book";
 import UpdateBook from "./modules/admin/pages/book/update-book";
 import CartManager from "./modules/admin/pages/cart";
+import BookInfo from "./modules/client/pages/book-info";
 import Cart from "./modules/client/pages/cart";
 import HomePage from "./modules/client/pages/home-page";
 import PayInfo from "./modules/client/pages/pay-info";
 import UserProfile from "./modules/client/pages/user-profile";
-import { globalState } from "./state/appState";
 
 function AppRoutes() {
   return (
@@ -25,7 +23,8 @@ function AppRoutes() {
           <Route path="" element={<HomePage />} />
           <Route path="cart" element={<Cart />} />
           <Route path="user-profile" element={<UserProfile />} />
-          <Route path="/pay-info" element={<PayInfo />} />
+          <Route path="pay-info" element={<PayInfo />} />
+          <Route path="book-info" element={<BookInfo />} />
         </Route>
         <Route path="/" element={<AdminLayout />}>
           <Route path="/admin" element={<BookManager />} />
@@ -35,7 +34,10 @@ function AppRoutes() {
             path="/admin-account/update/:accountId"
             element={<UpdateAccount />}
           />
-          <Route path="/admin-cart" element={<CartManager />} />
+          <Route
+            path="/admin-account/user-cart/:accountId"
+            element={<CartManager />}
+          />
           <Route path="/admin-book" element={<BookManager />} />
           <Route path="/admin-book/add" element={<AddBook />} />
           <Route path="/admin-book/update/:bookId" element={<UpdateBook />} />

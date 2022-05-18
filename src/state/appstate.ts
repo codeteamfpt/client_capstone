@@ -4,6 +4,7 @@ interface AppStateInterface {
   books?: IBook[];
   book?: IBook;
   accounts?: IAccount[];
+  account?: IAccount;
   carts?: ICart[];
   userInfo?: IAccount;
   cartNumber?: number;
@@ -15,6 +16,7 @@ export const globalState = atom<AppStateInterface>({
     books: undefined,
     book: undefined,
     accounts: undefined,
+    account: undefined,
     carts: undefined,
     userInfo: JSON.parse(localStorage.getItem("userInfo") || "{}"),
     cartNumber: 0,

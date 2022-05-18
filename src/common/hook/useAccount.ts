@@ -3,20 +3,20 @@ import apis from "../../services/apis";
 import { globalState } from "../../state/appState";
 import { IAccount } from "../type";
 
-const useCarts = () => {
+const useAccount = () => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const getCartItems = async (data: IAccount) => {
-    const carts = await apis.getAllCartItems(data).then((data) => data);
+  const getAccount = async (data: IAccount) => {
+    const account = await apis.getAccount(data).then((data) => data);
     setStateGlobal({
       ...stateGlobal,
-      carts: carts,
-      cartNumber: carts?.length || 0,
+      account: account,
     });
+    return account;
   };
   return {
-    carts: stateGlobal.carts,
-    getCartItems,
+    account: stateGlobal.account,
+    getAccount,
   };
 };
 
-export default useCarts;
+export default useAccount;

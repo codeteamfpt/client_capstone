@@ -1,43 +1,43 @@
-import React from "react";
 import { Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
-import { IAccount, ICart } from "../../../../common/type";
+import React from "react";
+import { IAccount } from "../../../../common/type";
 import TableRowAction from "../../components/TableRowAction";
 
 interface Props {
   items?: IAccount[];
   onDelete: (record: any) => () => void;
   onEdit: (record: any) => () => void;
+  onShowCart: (record: any) => () => void;
 }
 const AccountTable = (props: Props) => {
   const columns: ColumnsType<IAccount> = [
     {
-      title: "No",
-      dataIndex: "#",
+      title: "STT",
+      dataIndex: "accountId",
       key: "#",
       width: 60,
     },
     {
-      title: "userImage",
+      title: "Avatar",
       dataIndex: "userImage",
       key: "userImage",
       width: 300,
     },
     {
-      title: "userName",
+      title: "Tên người dùng",
       dataIndex: "userName",
       key: "userName",
-      sorter: true,
       width: 400,
     },
     {
-      title: "passWord",
+      title: "Mật khẩu",
       dataIndex: "passWord",
       key: "passWord",
       width: 400,
     },
     {
-      title: "role",
+      title: "Vai trò",
       dataIndex: "role",
       key: "role",
       width: 300,
@@ -46,7 +46,7 @@ const AccountTable = (props: Props) => {
       ),
     },
     {
-      title: "tool",
+      title: "",
       dataIndex: "tool",
       key: "tool",
       width: 120,
@@ -54,13 +54,22 @@ const AccountTable = (props: Props) => {
         <TableRowAction
           title="Bạn có chắc chắn muốn xóa không?"
           record={record}
+          formScreen="account_manager"
+          onShowCart={props.onShowCart}
           onDelete={props.onDelete}
           onEdit={props.onEdit}
         />
       ),
     },
   ];
-  return <Table columns={columns} dataSource={props.items} bordered />;
+  return (
+    <Table
+      rowKey="accountId"
+      columns={columns}
+      dataSource={props.items}
+      bordered
+    />
+  );
 };
 
 export default AccountTable;

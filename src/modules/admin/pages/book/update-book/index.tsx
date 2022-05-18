@@ -11,25 +11,30 @@ type Props = {};
 const UpdateBook = (props: Props) => {
   let { bookId: id } = useParams<"bookId">();
   const { getBooks } = useBooks();
-  const { getBook } = useBook();
+  const { getBook, book } = useBook();
 
   const { updateBook } = useUpdateBook();
   const navigate = useNavigate();
   React.useEffect(() => {
     if (id) {
-      const call = async () => {
-        await getBook({ bookId: id || "" });
-      };
-      call();
+      getBook({ bookId: id || "" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
   const onSave = async (values: IBook) => {
     await updateBook(values);
     await getBooks();
     navigate("/admin-book");
   };
-  return <BookForm title="Cập nhật sách" typeForm="update" onSave={onSave} />;
+  return (
+    <BookForm
+      title="Cập nhật sách"
+      typeForm="update"
+      onSave={onSave}
+      item={book}
+    />
+  );
 };
 
 export default UpdateBook;

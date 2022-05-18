@@ -1,18 +1,21 @@
 import { Col, Row } from "antd";
 import Title from "antd/lib/typography/Title";
 import React from "react";
-import { useRecoilState } from "recoil";
-import { globalState } from "../../../../state/appState";
+import { useParams } from "react-router";
+import useCarts from "../../../../common/hook/useCart";
 import CartTable from "./CartTable";
 
 type Props = {};
 
 const CartManager = (props: Props) => {
-  const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const { carts } = stateGlobal;
-  const onDelete = () => () => {};
-  const onEdit = () => () => {};
-
+  const { accountId: id } = useParams<"accountId">();
+  const { getCartItems, carts } = useCarts();
+  React.useEffect(() => {
+    if (id) {
+      getCartItems({ accountId: id || "" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
   return (
     <Row justify="center" style={{ marginTop: 60 }}>
       <Col span={22} style={{ backgroundColor: "white" }}>
@@ -24,7 +27,7 @@ const CartManager = (props: Props) => {
         <Row justify="center">
           <Col span={22}>
             <Col span={24}>
-              <CartTable items={carts} onDelete={onDelete} onEdit={onEdit} />
+              <CartTable items={carts} />
             </Col>
           </Col>
         </Row>

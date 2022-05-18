@@ -15,6 +15,7 @@ const BookManager = (props: Props) => {
   const { books } = stateGlobal;
   const { getBooks } = useBooks();
   const { removeBook } = useRemoveBook();
+
   const navigate = useNavigate();
   React.useEffect(() => {
     if (!books) {
@@ -25,7 +26,7 @@ const BookManager = (props: Props) => {
     await removeBook(record);
     await getBooks();
   };
-  const onEdit = (record: IBook) => () => {
+  const onEdit = (record: IBook) => async () => {
     navigate(`/admin-book/update/${record.bookId}`);
   };
   const onCreate = () => {
