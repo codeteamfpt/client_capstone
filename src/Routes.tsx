@@ -24,7 +24,7 @@ function AppRoutes() {
           <Route path="cart" element={<Cart />} />
           <Route path="user-profile" element={<UserProfile />} />
           <Route path="pay-info" element={<PayInfo />} />
-          <Route path="book-info" element={<BookInfo />} />
+          <Route path="book-info/:bookId" element={<BookInfo />} />
         </Route>
         <Route path="/" element={<AdminLayout />}>
           <Route path="/admin" element={<BookManager />} />

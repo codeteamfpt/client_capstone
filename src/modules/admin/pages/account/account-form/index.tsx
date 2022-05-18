@@ -1,7 +1,8 @@
 import { Button, Col, Form, Input, Row, Typography } from "antd";
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { IAccount } from "../../../../../common/type";
-
+import { RollbackOutlined } from "@ant-design/icons";
 type Props = {
   typeForm?: string;
   onSave?: (values: IAccount) => void;
@@ -29,7 +30,15 @@ const AccountForm = (props: Props) => {
       justify="center"
       style={{ backgroundColor: "white", padding: 50, margin: 40 }}
     >
-      <Col span={14} style={{ paddingBottom: 50 }}>
+      <Col span={18} style={{ padding: "20px 0 0 0px", display: "flex" }}>
+        <RollbackOutlined style={{ fontSize: 20, marginRight: 10 }} />
+        <Typography.Title level={5}>
+          <Link to="/admin-account" style={{ color: "black" }}>
+            Quay lại
+          </Link>
+        </Typography.Title>
+      </Col>
+      <Col span={18} style={{ paddingBottom: 50 }}>
         <Typography.Title level={3}>{title}</Typography.Title>
       </Col>
       <Col span={20}>
