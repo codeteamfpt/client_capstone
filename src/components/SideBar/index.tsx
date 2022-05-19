@@ -5,8 +5,9 @@ import {
   SettingOutlined,
   ShoppingCartOutlined,
   UserOutlined,
+  HomeOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Popconfirm } from "antd";
+import { Col, Layout, Menu, Popconfirm, Row, Typography } from "antd";
 import React, { useState } from "react";
 import { Outlet } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
@@ -18,7 +19,7 @@ type Props = {};
 
 const SideBar = (props: Props) => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const { carts } = stateGlobal;
+  const { carts, userInfo } = stateGlobal;
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   const onCollapse = () => {
@@ -58,6 +59,13 @@ const SideBar = (props: Props) => {
           <Menu.Item key="2" icon={<UserOutlined />} style={{ marginTop: 0 }}>
             <Link to="/admin-account">Quản lí tài khoản</Link>
           </Menu.Item>
+          <Menu.Item
+            key="3"
+            icon={<ShoppingCartOutlined />}
+            style={{ marginTop: 0 }}
+          >
+            <Link to="/admin-order">Quản lí đơn hàng</Link>
+          </Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout">
@@ -65,37 +73,57 @@ const SideBar = (props: Props) => {
           className="site-layout-background"
           style={{ padding: 0, position: "relative" }}
         >
-          <Popconfirm
-            title="Bạn có muốn đăng xuất không"
-            okText="Có"
-            cancelText="Không"
-            placement="left"
-            onConfirm={onLogout}
-            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-            style={{ position: "absolute", top: 0, right: 0 }}
-          >
-            <Link
-              className="logo"
-              to="/"
-              style={{
-                color: "white",
-                position: "absolute",
-                top: 0,
-                right: 40,
-              }}
-            >
-              Đăng xuất
-              <LogoutOutlined
-                style={{ position: "absolute", top: 25, right: -20 }}
-              />
-            </Link>
-          </Popconfirm>
+          <Row justify="end" align="middle">
+            <Col span={17}>
+              <Link to="/" style={{ color: "white" }}>
+                <HomeOutlined
+                  style={{
+                    position: "relative",
+                    marginRight: 10,
+                    top: -3,
+                  }}
+                />
+                Về trang chủ
+              </Link>
+            </Col>
+            <Col span={5}>
+              <Typography.Title
+                level={5}
+                style={{ color: "white", marginBottom: 0 }}
+              >
+                Xin chào {userInfo?.userName}
+              </Typography.Title>
+            </Col>
+            <Col span={2}>
+              <Popconfirm
+                title="Bạn có muốn đăng xuất không"
+                okText="Có"
+                cancelText="Không"
+                placement="left"
+                onConfirm={onLogout}
+                icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+              >
+                <Link
+                  className="logo"
+                  to="/"
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  Đăng xuất
+                  <LogoutOutlined
+                    style={{ position: "relative", top: -3, right: -5 }}
+                  />
+                </Link>
+              </Popconfirm>
+            </Col>
+          </Row>
         </Header>
         <Content style={{ margin: "0 16px" }}>
           <Outlet />
         </Content>
         <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2018 Created by Ant UED
+          Hiệu sách online của Long
         </Footer>
       </Layout>
     </Layout>

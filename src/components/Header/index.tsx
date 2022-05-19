@@ -1,4 +1,4 @@
-import { Popconfirm } from "antd";
+import { Popconfirm, Typography } from "antd";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -51,6 +51,20 @@ const Header = () => {
       </div>
       <div className="header-top">
         <div className="tool">
+          <div className="user-name">
+            <Link to="/user-profile">
+              <span
+                style={{
+                  color: "white",
+                  position: "relative",
+                  right: 20,
+                  top: 10,
+                }}
+              >
+                Xin chào {userInfo?.userName}
+              </span>
+            </Link>
+          </div>
           <div className="search tool-item">
             <div className="search-icon">
               <img src="/images/search.png" alt="" />
@@ -101,7 +115,7 @@ const Header = () => {
             )}
           </div>
         </div>
-        <Navbar />
+        <Navbar userInfo={userInfo} />
       </div>
       {pathname === "/" ? (
         <div className="header-bottom">

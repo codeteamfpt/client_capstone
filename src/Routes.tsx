@@ -9,6 +9,7 @@ import BookManager from "./modules/admin/pages/book";
 import AddBook from "./modules/admin/pages/book/add-book";
 import UpdateBook from "./modules/admin/pages/book/update-book";
 import CartManager from "./modules/admin/pages/cart";
+import OrderManager from "./modules/admin/pages/order";
 import BookInfo from "./modules/client/pages/book-info";
 import Cart from "./modules/client/pages/cart";
 import HomePage from "./modules/client/pages/home-page";
@@ -41,6 +42,7 @@ function AppRoutes() {
           <Route path="/admin-book" element={<BookManager />} />
           <Route path="/admin-book/add" element={<AddBook />} />
           <Route path="/admin-book/update/:bookId" element={<UpdateBook />} />
+          <Route path="/admin-order" element={<OrderManager />} />
         </Route>
       </Routes>
     </BrowserRouter>
