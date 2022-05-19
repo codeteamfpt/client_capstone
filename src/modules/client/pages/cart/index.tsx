@@ -25,7 +25,7 @@ const Cart = (props: Props) => {
   };
   return (
     <div id="cart">
-      <div className="cart-container">
+      <div className="cart-container" style={{ backgroundColor: "white" }}>
         <p className="title">Thông tin giỏ hàng</p>
         <div className="d-flex">
           <div className="cart-left">

@@ -22,8 +22,11 @@ const PayInfo = (props: Props) => {
     NotificationSuccess("Thông báo", "Đặt hàng thành công");
   };
   return (
-    <Row justify="center" style={{ padding: 30 }}>
-      <Col span={18} style={{ paddingBottom: 10, display: "flex" }}>
+    <Row justify="center">
+      <Col
+        span={18}
+        style={{ padding: 20, display: "flex", backgroundColor: "white" }}
+      >
         <RollbackOutlined
           style={{ fontSize: 20, marginRight: 10, color: "#ffbe2d" }}
         />
@@ -33,7 +36,7 @@ const PayInfo = (props: Props) => {
           </Link>
         </Typography.Title>
       </Col>
-      <Col span={18}>
+      <Col span={18} style={{ backgroundColor: "white", padding: 20 }}>
         <Form
           name="basic"
           initialValues={{ remember: true }}

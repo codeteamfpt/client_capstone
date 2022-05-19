@@ -3,6 +3,7 @@ import {
   IBook,
   ICart,
   InputTypeCart,
+  IOrder,
   IRemoveCartItemInput,
   IResponseData,
 } from "../common/type";
@@ -64,6 +65,10 @@ const apis = {
   removeAccount: async (data: IAccount): Promise<any> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/delete";
     return axiosClient.post(url, data);
+  },
+  getAllOrders: async (): Promise<IOrder[]> => {
+    const url = process.env.REACT_APP_API_SOURCE + "order/getall";
+    return axiosClient.get(url);
   },
   login: async (data: IAccount): Promise<IAccount> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/check";

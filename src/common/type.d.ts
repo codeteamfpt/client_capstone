@@ -28,7 +28,7 @@ export interface ICart {
   image: string;
   numberBook: number;
 }
-
+export interface IOrder {}
 export interface InputTypeCart {
   accountId: string;
   bookId: string;
