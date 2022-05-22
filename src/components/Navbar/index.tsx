@@ -18,12 +18,16 @@ const Navbar = ({ userInfo }: IProps) => {
           </li>
         )}
 
-        <li className="nav-item">
-          <Link to="/">Về MC</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/user-profile">Profile</Link>
-        </li>
+        {(userInfo?.role === 0 || userInfo?.role === 1) && (
+          <>
+            <li className="nav-item">
+              <Link to="/user-profile">Profile</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/order-history">Xem đơn hàng</Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );

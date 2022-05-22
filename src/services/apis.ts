@@ -42,6 +42,10 @@ const apis = {
     const url = process.env.REACT_APP_API_SOURCE + "cart/add";
     return axiosClient.post(url, data);
   },
+  getTotalPrice: async (data: IAccount): Promise<number> => {
+    const url = process.env.REACT_APP_API_SOURCE + "cart/pay";
+    return axiosClient.post(url, data);
+  },
   removeItemCart: async (data: IRemoveCartItemInput): Promise<any> => {
     const url = process.env.REACT_APP_API_SOURCE + "cart/delete";
     return axiosClient.post(url, data);
@@ -66,9 +70,13 @@ const apis = {
     const url = process.env.REACT_APP_API_SOURCE + "account/delete";
     return axiosClient.post(url, data);
   },
-  getAllOrders: async (): Promise<IOrder[]> => {
-    const url = process.env.REACT_APP_API_SOURCE + "order/getall";
-    return axiosClient.get(url);
+  getAllOrders: async (data: IAccount): Promise<IOrder[]> => {
+    const url = process.env.REACT_APP_API_SOURCE + "bill/get";
+    return axiosClient.post(url, data);
+  },
+  createOrder: async (data: IOrder): Promise<any> => {
+    const url = process.env.REACT_APP_API_SOURCE + "bill/save";
+    return axiosClient.post(url, data);
   },
   login: async (data: IAccount): Promise<IAccount> => {
     const url = process.env.REACT_APP_API_SOURCE + "account/check";

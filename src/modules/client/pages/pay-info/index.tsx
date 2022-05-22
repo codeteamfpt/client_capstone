@@ -1,22 +1,40 @@
+import { RollbackOutlined } from "@ant-design/icons";
 import { Button, Col, Form, Input, Row, Typography } from "antd";
 import React from "react";
-import { NotificationSuccess } from "../../../../components/Notification";
-import { RollbackOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import useCreateCart from "../../../../common/hook/useCreateCart";
+import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import useCreateCart from "../../../../common/hook/useCreateCart";
+import useCreateOrder from "../../../../common/hook/useCreateOrder";
+import useTotalPrice from "../../../../common/hook/useTotalPrice";
+import { IOrder } from "../../../../common/type";
+import { NotificationSuccess } from "../../../../components/Notification";
 import { globalState } from "../../../../state/appState";
 
 type Props = {};
 
 const PayInfo = (props: Props) => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const { userInfo } = stateGlobal;
+  const { userInfo, totalBill, cartNumber } = stateGlobal;
+  const [form] = Form.useForm<IOrder>();
   const navigate = useNavigate();
   const { createCart } = useCreateCart();
-  const onFinish = async () => {
+  const { createOrder } = useCreateOrder();
+  const { totalPrice } = useTotalPrice();
+
+  React.useEffect(() => {
+    totalPrice({ accountId: userInfo?.accountId });
+    form.setFieldsValue({ ...form.getFieldsValue(), totalBill: totalBill });
+  }, [cartNumber]);
+  console.log(totalBill);
+  const onFinish = async (values: IOrder) => {
+    await createOrder({
+      ...values,
+      accountId: userInfo?.accountId || "",
+      totalBill: totalBill || 0,
+    });
     await createCart({ accountId: userInfo?.accountId });
+
     navigate("/");
     setStateGlobal({ ...stateGlobal, carts: undefined, cartNumber: 0 });
     NotificationSuccess("Thông báo", "Đặt hàng thành công");
@@ -42,6 +60,7 @@ const PayInfo = (props: Props) => {
           initialValues={{ remember: true }}
           autoComplete="off"
           onFinish={onFinish}
+          form={form}
         >
           <Typography.Title level={3}>Thông tin thanh toán</Typography.Title>
           <Row justify="center" style={{ padding: 20 }}>
@@ -70,7 +89,7 @@ const PayInfo = (props: Props) => {
             <Col span={16}>
               <Form.Item
                 label="Số điện thoại"
-                name="phone"
+                name="phoneNumber"
                 labelCol={{ span: 6 }}
                 rules={[
                   { required: true, message: "Vui lòng nhập số điện thoại" },
@@ -82,11 +101,20 @@ const PayInfo = (props: Props) => {
             <Col span={16}>
               <Form.Item
                 label="Địa chỉ"
-                name="address"
+                name="location"
                 labelCol={{ span: 6 }}
                 rules={[{ required: true, message: "Vui lòng nhập địa chỉ" }]}
               >
                 <Input />
+              </Form.Item>
+            </Col>
+            <Col span={16}>
+              <Form.Item
+                label="Tổng hóa đơn (VNĐ)"
+                name="totalBill"
+                labelCol={{ span: 6 }}
+              >
+                <Input disabled />
               </Form.Item>
             </Col>
             <Col span={16}>

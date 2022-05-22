@@ -7,8 +7,9 @@ interface AppStateInterface {
   account?: IAccount;
   carts?: ICart[];
   userInfo?: IAccount;
-  orders?: IOrder;
+  orders?: IOrder[];
   cartNumber?: number;
+  totalBill?: number;
 }
 const GLOBAL_STATE_KEY = "GLOBAL_STATE_KEY";
 export const globalState = atom<AppStateInterface>({
@@ -22,5 +23,6 @@ export const globalState = atom<AppStateInterface>({
     orders: undefined,
     userInfo: JSON.parse(localStorage.getItem("userInfo") || "{}"),
     cartNumber: 0,
+    totalBill: 0,
   },
 });

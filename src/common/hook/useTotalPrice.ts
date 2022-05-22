@@ -3,18 +3,21 @@ import apis from "../../services/apis";
 import { globalState } from "../../state/appState";
 import { IAccount } from "../type";
 
-const useOrders = () => {
+const useTotalPrice = () => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const getOrders = async (accountId: IAccount) => {
-    const orders = await apis.getAllOrders(accountId).then((data) => data);
+
+  const totalPrice = async (data: IAccount) => {
+    const res = await apis.getTotalPrice(data).then((data) => data);
     setStateGlobal({
       ...stateGlobal,
-      orders: orders,
+      totalBill: res,
     });
+    return res;
   };
+
   return {
-    getOrders,
+    totalPrice,
   };
 };
 
-export default useOrders;
+export default useTotalPrice;
