@@ -1,19 +1,25 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import useBooks from "../../../../common/hook/useBooks";
+import useOrders from "../../../../common/hook/useOrders";
 import Book from "../../../../components/Book";
 import { globalState } from "../../../../state/appState";
 
 const HomePage = () => {
   const { getBooks } = useBooks();
+  const { getOrders } = useOrders();
+
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const { books } = stateGlobal;
+  const { books, userInfo } = stateGlobal;
 
   React.useEffect(() => {
     if (!books) {
       getBooks();
     }
   }, [books]);
+  React.useEffect(() => {
+    if (userInfo) getOrders({ accountId: userInfo?.accountId });
+  }, [userInfo]);
   return (
     <>
       <div className="section">

@@ -51,19 +51,30 @@ const Header = () => {
       </div>
       <div className="header-top">
         <div className="tool">
+          <div className="logo">
+            <a href="#header">
+              <img
+                src="/images/books-stack-of-three.png"
+                alt=""
+                style={{ width: 40, marginRight: "360px" }}
+              />
+            </a>
+          </div>
           <div className="user-name">
-            <Link to="/user-profile">
-              <span
-                style={{
-                  color: "white",
-                  position: "relative",
-                  right: 20,
-                  top: 10,
-                }}
-              >
-                Xin chào {userInfo?.userName}
-              </span>
-            </Link>
+            {userInfo && (
+              <Link to="/user-profile">
+                <span
+                  style={{
+                    color: "white",
+                    position: "relative",
+                    right: 20,
+                    top: 10,
+                  }}
+                >
+                  Xin chào {userInfo?.userName}
+                </span>
+              </Link>
+            )}
           </div>
           <div className="search tool-item">
             <div className="search-icon">

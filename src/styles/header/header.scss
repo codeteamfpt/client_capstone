@@ -42,6 +42,10 @@
       position: fixed;
       z-index: 9999;
       right: 0;
+      .logo {
+        position: fixed;
+        left: 300px;
+      }
       .tool-item {
         margin: 0 7px;
         box-shadow: -2px 2px 8px #888888;

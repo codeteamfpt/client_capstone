@@ -13,6 +13,7 @@ import OrderManager from "./modules/admin/pages/order";
 import BookInfo from "./modules/client/pages/book-info";
 import Cart from "./modules/client/pages/cart";
 import HomePage from "./modules/client/pages/home-page";
+import OrderHistory from "./modules/client/pages/order-history";
 import PayInfo from "./modules/client/pages/pay-info";
 import UserProfile from "./modules/client/pages/user-profile";
 
@@ -25,6 +26,7 @@ function AppRoutes() {
           <Route path="cart" element={<Cart />} />
           <Route path="user-profile" element={<UserProfile />} />
           <Route path="pay-info" element={<PayInfo />} />
+          <Route path="order-history" element={<OrderHistory />} />
           <Route path="book-info/:bookId" element={<BookInfo />} />
         </Route>
         <Route path="/" element={<AdminLayout />}>

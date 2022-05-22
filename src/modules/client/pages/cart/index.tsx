@@ -1,21 +1,22 @@
+import { Col, Typography } from "antd";
 import React from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState } from "recoil";
 import useCarts from "../../../../common/hook/useCart";
 import useRemoveItemCart from "../../../../common/hook/useRemoveItemCart";
-import { NotificationSuccess } from "../../../../components/Notification";
+import useTotalPrice from "../../../../common/hook/useTotalPrice";
+import { RollbackOutlined } from "@ant-design/icons";
 import { globalState } from "../../../../state/appState";
+import { Link } from "react-router-dom";
 type Props = {};
 
 const Cart = (props: Props) => {
   const [stateGlobal, _] = useRecoilState(globalState);
+  const { carts, userInfo, totalBill, cartNumber } = stateGlobal;
   const navigate = useNavigate();
   const { removeItemCart } = useRemoveItemCart();
   const { getCartItems } = useCarts();
-  const { carts, userInfo } = stateGlobal;
-  const onPay = () => {
-    NotificationSuccess("Thông báo", "Bạn đã thanh toán thành công đơn hàng");
-  };
+  const { totalPrice } = useTotalPrice();
   const onRemoveItem = async (bookId: string) => {
     await removeItemCart({
       accountId: userInfo?.accountId || "",
@@ -23,9 +24,25 @@ const Cart = (props: Props) => {
     });
     await getCartItems({ accountId: userInfo?.accountId });
   };
+  React.useEffect(() => {
+    totalPrice({ accountId: userInfo?.accountId });
+  }, [cartNumber]);
   return (
     <div id="cart">
       <div className="cart-container" style={{ backgroundColor: "white" }}>
+        <Col
+          span={18}
+          style={{ padding: 20, display: "flex", backgroundColor: "white" }}
+        >
+          <RollbackOutlined
+            style={{ fontSize: 20, marginRight: 10, color: "#ffbe2d" }}
+          />
+          <Typography.Title level={5}>
+            <Link to="/" style={{ color: "#ffbe2d" }}>
+              Quay lại
+            </Link>
+          </Typography.Title>
+        </Col>
         <p className="title">Thông tin giỏ hàng</p>
         <div className="d-flex">
           <div className="cart-left">
@@ -95,9 +112,9 @@ const Cart = (props: Props) => {
               </thead>
               <tbody>
                 <tr>
-                  <td data-label="Tổng phụ">150.000₫</td>
+                  <td data-label="Tổng phụ">{totalBill}₫</td>
                   <td data-label="Giao hàng">Tính phí giao hàng</td>
-                  <td data-label="Tổng">150.000₫</td>
+                  <td data-label="Tổng">{totalBill}₫</td>
                 </tr>
               </tbody>
             </table>

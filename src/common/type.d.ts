@@ -28,7 +28,17 @@ export interface ICart {
   image: string;
   numberBook: number;
 }
-export interface IOrder {}
+export interface IOrder {
+  accountId: string;
+  billId: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  location: string;
+  totalBill: number;
+  createDate: string;
+  status: string;
+}
 export interface InputTypeCart {
   accountId: string;
   bookId: string;

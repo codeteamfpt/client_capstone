@@ -59,13 +59,13 @@ const SideBar = (props: Props) => {
           <Menu.Item key="2" icon={<UserOutlined />} style={{ marginTop: 0 }}>
             <Link to="/admin-account">Quản lí tài khoản</Link>
           </Menu.Item>
-          <Menu.Item
+          {/* <Menu.Item
             key="3"
             icon={<ShoppingCartOutlined />}
             style={{ marginTop: 0 }}
           >
             <Link to="/admin-order">Quản lí đơn hàng</Link>
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>
       </Sider>
       <Layout className="site-layout">

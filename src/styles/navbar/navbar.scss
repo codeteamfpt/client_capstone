@@ -10,7 +10,8 @@
     z-index: 10;
     .nav-item {
       &:first-child {
-        margin-right: 50%;
+        position: absolute;
+        left: 270px;
       }
       a {
         color: white;
