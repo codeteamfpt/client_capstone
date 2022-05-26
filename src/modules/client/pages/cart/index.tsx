@@ -12,7 +12,7 @@ type Props = {};
 
 const Cart = (props: Props) => {
   const [stateGlobal, _] = useRecoilState(globalState);
-  const { carts, userInfo, totalBill, cartNumber } = stateGlobal;
+  const { carts, userInfo, totalBill } = stateGlobal;
   const navigate = useNavigate();
   const { removeItemCart } = useRemoveItemCart();
   const { getCartItems } = useCarts();
@@ -26,7 +26,7 @@ const Cart = (props: Props) => {
   };
   React.useEffect(() => {
     totalPrice({ accountId: userInfo?.accountId });
-  }, [cartNumber]);
+  }, [carts]);
   return (
     <div id="cart">
       <div className="cart-container" style={{ backgroundColor: "white" }}>

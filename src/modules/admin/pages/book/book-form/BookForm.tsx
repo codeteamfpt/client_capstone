@@ -1,5 +1,5 @@
 import { Button, Col, Form, Input, InputNumber, Row, Typography } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IBook } from "../../../../../common/type";
 import { RollbackOutlined } from "@ant-design/icons";
@@ -14,6 +14,8 @@ type Props = {
 const BookForm = (props: Props) => {
   const { onSave, typeForm, title, item } = props;
   const [form] = Form.useForm();
+  const [bookImage, setBookImage] = useState();
+
   const initialValues: IBook = {
     bookId: item?.bookId || "",
     bookName: item?.bookName || "",
@@ -25,6 +27,13 @@ const BookForm = (props: Props) => {
   React.useEffect(() => {
     form.setFieldsValue(initialValues);
   }, [initialValues]);
+
+  const onImageChange = () => {
+    setBookImage(form.getFieldValue("bookImage"));
+  };
+  React.useEffect(() => {
+    form.setFieldsValue({ ...initialValues, bookImage: bookImage });
+  }, [bookImage]);
   return (
     <Row
       justify="center"
@@ -52,19 +61,37 @@ const BookForm = (props: Props) => {
         >
           <Row>
             <Col span={12}>
-              <Form.Item
-                label="Hình ảnh"
-                name="bookImage"
-                rules={[{ required: true, message: "Vui lòng nhập vào ảnh" }]}
-              >
-                <Input />
-              </Form.Item>
+              <Row justify="center">
+                <Col>
+                  <img
+                    style={{
+                      objectFit: "cover",
+                      width: 300,
+                      height: 300,
+                      border: "1px solid #ccc",
+                    }}
+                    src={bookImage || "/images/image.png"}
+                    alt="avatar"
+                  />
+                </Col>
+              </Row>
             </Col>
             <Form.Item name="bookId">
               <Input hidden />
             </Form.Item>
             <Col span={12}>
               <Row justify="center">
+                <Col span={24}>
+                  <Form.Item
+                    label="Hình ảnh"
+                    name="bookImage"
+                    rules={[
+                      { required: true, message: "Vui lòng nhập vào ảnh" },
+                    ]}
+                  >
+                    <Input onChange={onImageChange} />
+                  </Form.Item>
+                </Col>
                 <Col span={24}>
                   <Form.Item
                     label="Tên sách "
@@ -117,7 +144,7 @@ const BookForm = (props: Props) => {
                 </Col>
               </Row>
             </Col>
-            <Col span={24}>
+            <Col span={24} style={{ marginTop: 20 }}>
               <Row justify="center">
                 <Form.Item>
                   <Button type="primary" htmlType="submit">

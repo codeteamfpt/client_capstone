@@ -10,7 +10,6 @@ const useCarts = () => {
     setStateGlobal({
       ...stateGlobal,
       carts: carts,
-      cartNumber: carts?.length || 0,
     });
   };
   return {

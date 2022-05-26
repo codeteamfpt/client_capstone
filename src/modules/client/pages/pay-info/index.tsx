@@ -15,7 +15,7 @@ type Props = {};
 
 const PayInfo = (props: Props) => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const { userInfo, totalBill, cartNumber } = stateGlobal;
+  const { userInfo, totalBill, carts } = stateGlobal;
   const [form] = Form.useForm<IOrder>();
   const navigate = useNavigate();
   const { createCart } = useCreateCart();
@@ -25,7 +25,7 @@ const PayInfo = (props: Props) => {
   React.useEffect(() => {
     totalPrice({ accountId: userInfo?.accountId });
     form.setFieldsValue({ ...form.getFieldsValue(), totalBill: totalBill });
-  }, [cartNumber]);
+  }, [carts]);
   console.log(totalBill);
   const onFinish = async (values: IOrder) => {
     await createOrder({
@@ -36,7 +36,7 @@ const PayInfo = (props: Props) => {
     await createCart({ accountId: userInfo?.accountId });
 
     navigate("/");
-    setStateGlobal({ ...stateGlobal, carts: undefined, cartNumber: 0 });
+    setStateGlobal({ ...stateGlobal, carts: undefined });
     NotificationSuccess("Thông báo", "Đặt hàng thành công");
   };
   return (

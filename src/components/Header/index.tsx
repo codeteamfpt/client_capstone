@@ -13,14 +13,14 @@ const Header = () => {
   const { pathname } = useLocation();
   const [show, setShow] = React.useState<boolean>(false);
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
-  const { userInfo, carts, cartNumber } = stateGlobal;
+  const { userInfo, carts } = stateGlobal;
   const { getCartItems } = useCarts();
 
   React.useEffect(() => {
-    if (cartNumber === 0) {
+    if (!carts) {
       getCartItems({ accountId: userInfo?.accountId });
     }
-  }, [cartNumber]);
+  }, [userInfo?.accountId]);
   const toggleModal = () => {
     setShow(!show);
   };
@@ -33,7 +33,6 @@ const Header = () => {
       ...stateGlobal,
       userInfo: undefined,
       carts: undefined,
-      cartNumber: 0,
     });
     NotificationSuccess("Thông báo", "Bạn đã đăng xuất");
   };
@@ -90,7 +89,7 @@ const Header = () => {
           </div>
           <div className="cart-button tool-item">
             <Link to="/cart">
-              <p>{cartNumber}</p>
+              <p>{carts?.length || 0}</p>
               <img className="cart" src="/images/shopping-cart.png" alt="" />
             </Link>
           </div>
