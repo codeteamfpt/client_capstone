@@ -30,7 +30,7 @@ const SideBar = (props: Props) => {
     setStateGlobal({
       ...stateGlobal,
       userInfo: undefined,
-      cartNumber: carts?.length || 0,
+      carts: undefined,
     });
     NotificationSuccess("Thông báo", "Bạn đã đăng xuất");
     navigate("/");

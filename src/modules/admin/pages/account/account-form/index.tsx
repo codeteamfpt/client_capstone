@@ -1,5 +1,5 @@
 import { Button, Col, Form, Input, Row, Typography } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IAccount } from "../../../../../common/type";
 import { RollbackOutlined } from "@ant-design/icons";
@@ -13,7 +13,7 @@ type Props = {
 const AccountForm = (props: Props) => {
   const { onSave, typeForm, title, item } = props;
   const [form] = Form.useForm();
-
+  const [userImage, setUserImage] = useState();
   const initialValues: IAccount = {
     accountId: item?.accountId || "",
     userName: item?.userName || "",
@@ -25,6 +25,12 @@ const AccountForm = (props: Props) => {
   useEffect(() => {
     form.setFieldsValue(initialValues);
   }, [initialValues]);
+  const onImageChange = () => {
+    setUserImage(form.getFieldValue("userImage"));
+  };
+  React.useEffect(() => {
+    form.setFieldsValue({ ...initialValues, userImage: userImage });
+  }, [userImage]);
   return (
     <Row
       justify="center"
@@ -52,19 +58,39 @@ const AccountForm = (props: Props) => {
         >
           <Row>
             <Col span={12}>
-              <Form.Item
-                label="Hình ảnh"
-                name="userImage"
-                rules={[{ required: true, message: "Vui lòng nhập vào ảnh" }]}
-              >
-                <Input />
-              </Form.Item>
+              <Row justify="center">
+                <Col>
+                  <img
+                    style={{
+                      objectFit: "cover",
+                      width: 300,
+                      height: 300,
+                      border: "1px solid #ccc",
+                      borderRadius: "50%",
+                    }}
+                    src={userImage || "/images/user2.png"}
+                    alt="avatar"
+                  />
+                </Col>
+              </Row>
             </Col>
             <Form.Item name="accountId">
               <Input hidden />
             </Form.Item>
+
             <Col span={12}>
-              <Row justify="center">
+              <Row justify="center" style={{ paddingTop: 60 }}>
+                <Col span={24}>
+                  <Form.Item
+                    label="Hình ảnh"
+                    name="userImage"
+                    rules={[
+                      { required: true, message: "Vui lòng nhập vào ảnh" },
+                    ]}
+                  >
+                    <Input onChange={onImageChange} />
+                  </Form.Item>
+                </Col>
                 <Col span={24}>
                   <Form.Item
                     label="Tên người dùng"
@@ -100,7 +126,7 @@ const AccountForm = (props: Props) => {
                 </Col>
               </Row>
             </Col>
-            <Col span={24}>
+            <Col span={24} style={{ marginTop: 40 }}>
               <Row justify="center">
                 <Form.Item>
                   <Button type="primary" htmlType="submit">

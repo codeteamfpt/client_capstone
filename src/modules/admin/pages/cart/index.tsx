@@ -9,14 +9,14 @@ import CartTable from "./CartTable";
 type Props = {};
 
 const CartManager = (props: Props) => {
-  const { accountId: id } = useParams<"accountId">();
+  const { accountId } = useParams<"accountId">();
   const { getCartItems, carts } = useCarts();
   React.useEffect(() => {
-    if (id) {
-      getCartItems({ accountId: id || "" });
+    if (!carts) {
+      getCartItems({ accountId: accountId || "" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [carts]);
   return (
     <Row justify="center" style={{ marginTop: 60 }}>
       <Col span={22} style={{ backgroundColor: "white" }}>
