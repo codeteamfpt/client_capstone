@@ -16,6 +16,7 @@ const useTotalPrice = () => {
   };
 
   return {
+    totalBill: stateGlobal.totalBill,
     totalPrice,
   };
 };

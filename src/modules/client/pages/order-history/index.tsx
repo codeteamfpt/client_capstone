@@ -96,7 +96,7 @@ const OrderHistory = (props: Props) => {
           style={{ padding: 20, marginBottom: 60, backgroundColor: "white" }}
         >
           <Table
-            rowKey="bookId"
+            rowKey="billId"
             columns={columns}
             dataSource={orders}
             bordered

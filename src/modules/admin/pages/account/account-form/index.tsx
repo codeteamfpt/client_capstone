@@ -13,7 +13,7 @@ type Props = {
 const AccountForm = (props: Props) => {
   const { onSave, typeForm, title, item } = props;
   const [form] = Form.useForm();
-  const [userImage, setUserImage] = useState();
+  const [userImage, setUserImage] = useState<string>("/images/user2.png");
   const initialValues: IAccount = {
     accountId: item?.accountId || "",
     userName: item?.userName || "",
@@ -21,7 +21,11 @@ const AccountForm = (props: Props) => {
     role: 0,
     userImage: item?.userImage || "",
   };
-
+  useEffect(() => {
+    if (item) {
+      setUserImage(item?.userImage || "/images/user2.png");
+    }
+  }, [item]);
   useEffect(() => {
     form.setFieldsValue(initialValues);
   }, [initialValues]);
@@ -68,7 +72,7 @@ const AccountForm = (props: Props) => {
                       border: "1px solid #ccc",
                       borderRadius: "50%",
                     }}
-                    src={userImage || "/images/user2.png"}
+                    src={userImage}
                     alt="avatar"
                   />
                 </Col>

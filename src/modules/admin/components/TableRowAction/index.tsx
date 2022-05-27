@@ -20,43 +20,47 @@ const TableRowAction = (props: IProps) => {
   const { onDelete, onEdit, record, title, onShowCart, formScreen } = props;
   return (
     <Space size="small">
-      {formScreen === "account_manager" ? (
-        <Button
-          type="ghost"
-          onClick={onShowCart?.(record)}
-          shape="circle"
-          icon={<ShoppingCartOutlined />}
-          size="middle"
-          title="Hiển thị thông tin giỏ hàng"
-        />
-      ) : (
-        <></>
-      )}
+      {record.role !== 1 && (
+        <>
+          {formScreen === "account_manager" ? (
+            <Button
+              type="ghost"
+              onClick={onShowCart?.(record)}
+              shape="circle"
+              icon={<ShoppingCartOutlined />}
+              size="middle"
+              title="Hiển thị thông tin giỏ hàng"
+            />
+          ) : (
+            <></>
+          )}
 
-      <Button
-        type="ghost"
-        onClick={onEdit(record)}
-        shape="circle"
-        icon={<EditOutlined />}
-        size="middle"
-        title="Sửa thông tin"
-      />
-      <Popconfirm
-        title={title}
-        cancelText="Không"
-        okText="Xóa"
-        placement="left"
-        onConfirm={onDelete(record)}
-        icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-      >
-        <Button
-          style={{ color: "red" }}
-          type="ghost"
-          shape="circle"
-          icon={<DeleteOutlined />}
-          size="middle"
-        />
-      </Popconfirm>
+          <Button
+            type="ghost"
+            onClick={onEdit(record)}
+            shape="circle"
+            icon={<EditOutlined />}
+            size="middle"
+            title="Sửa thông tin"
+          />
+          <Popconfirm
+            title={title}
+            cancelText="Không"
+            okText="Xóa"
+            placement="left"
+            onConfirm={onDelete(record)}
+            icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+          >
+            <Button
+              style={{ color: "red" }}
+              type="ghost"
+              shape="circle"
+              icon={<DeleteOutlined />}
+              size="middle"
+            />
+          </Popconfirm>
+        </>
+      )}
     </Space>
   );
 };
