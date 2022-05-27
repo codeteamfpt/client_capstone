@@ -1,6 +1,6 @@
 import { Col, Row, Form, Typography } from "antd";
 import Input from "rc-input";
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { globalState } from "../../../../state/appState";
 import { RollbackOutlined } from "@ant-design/icons";
@@ -12,9 +12,11 @@ const UserProfile = (props: Props) => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
   const { userInfo } = stateGlobal;
   const [form] = Form.useForm();
+  const [userImage, setUserImage] = useState<string>("/images/user2.png");
   React.useEffect(() => {
     if (userInfo) {
       form.setFieldsValue(userInfo);
+      setUserImage(userInfo?.userImage || "/images/user2.png");
     }
   }, [userInfo]);
   const onFinish = () => {};
@@ -55,9 +57,14 @@ const UserProfile = (props: Props) => {
                   <Row justify="center">
                     <Col span={16}>
                       <img
-                        src="/images/mindmap-english-grammar.jpg"
+                        style={{
+                          objectFit: "cover",
+                          borderRadius: "50%",
+                          width: 300,
+                          height: 300,
+                        }}
+                        src={userImage}
                         alt=""
-                        width={400}
                       />
                     </Col>
                   </Row>

@@ -19,25 +19,25 @@ const Book = ({ item }: Props) => {
   const onAddToCart = async () => {
     await addToCart({
       accountId: userInfo?.accountId || "",
-      bookId: item.bookId || "",
+      bookId: item?.bookId || "",
       numberBook: 1,
     });
     await getCartItems({ accountId: userInfo?.accountId });
     NotificationSuccess(
       "Thông báo",
-      `Sản phẩm: ${item.bookName} - được thêm vào giỏ hàng`
+      `Sản phẩm: ${item?.bookName} - được thêm vào giỏ hàng`
     );
   };
   return (
     <div className="card-item">
       <div className="item">
         <div className="card-image">
-          <img src="/images/mindmap-english-grammar.jpg" alt="" />
+          <img src={item?.bookImage || "/images/open-book.png"} alt="" />
         </div>
         <div className="category">
-          <p>{item.bookType}</p>
+          <p>{item?.bookType}</p>
         </div>
-        <Link to={`/book-info/${item.bookId}`} className="btn-view">
+        <Link to={`/book-info/${item?.bookId}`} className="btn-view">
           <p>Xem ngay</p>
         </Link>
         <div className="card-content">
@@ -45,11 +45,11 @@ const Book = ({ item }: Props) => {
           <div className="title">
             <Link to="/">
               <br />
-              {item.bookName}
+              {item?.bookName}
             </Link>
           </div>
           <div className="price">
-            <span>{item.bookPrice}</span>
+            <span>{item?.bookPrice}</span>
             <span>đ</span>
           </div>
           <button className="buy" onClick={onAddToCart}>

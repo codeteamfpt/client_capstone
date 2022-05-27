@@ -8,7 +8,7 @@ import "antd/dist/antd.css";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-
+document.title = "Cửa hàng sách của Long";
 root.render(
   <React.StrictMode>
     <RecoilRoot>

@@ -14,7 +14,7 @@ type Props = {
 const BookForm = (props: Props) => {
   const { onSave, typeForm, title, item } = props;
   const [form] = Form.useForm();
-  const [bookImage, setBookImage] = useState();
+  const [bookImage, setBookImage] = useState<string>("/images/image.png");
 
   const initialValues: IBook = {
     bookId: item?.bookId || "",
@@ -24,6 +24,11 @@ const BookForm = (props: Props) => {
     bookType: item?.bookType || "",
     bookImage: item?.bookImage || "",
   };
+  React.useEffect(() => {
+    if (item) {
+      setBookImage(item?.bookImage || "/images/image.png");
+    }
+  }, [item]);
   React.useEffect(() => {
     form.setFieldsValue(initialValues);
   }, [initialValues]);
@@ -42,7 +47,7 @@ const BookForm = (props: Props) => {
       <Col span={18} style={{ padding: "20px 0 0 0", display: "flex" }}>
         <RollbackOutlined style={{ fontSize: 20, marginRight: 10 }} />
         <Typography.Title level={5}>
-          <Link to="/admin-account" style={{ color: "black" }}>
+          <Link to="/admin-book" style={{ color: "black" }}>
             Quay lại
           </Link>
         </Typography.Title>
@@ -65,12 +70,12 @@ const BookForm = (props: Props) => {
                 <Col>
                   <img
                     style={{
-                      objectFit: "cover",
+                      objectFit: "contain",
                       width: 300,
                       height: 300,
                       border: "1px solid #ccc",
                     }}
-                    src={bookImage || "/images/image.png"}
+                    src={bookImage}
                     alt="avatar"
                   />
                 </Col>

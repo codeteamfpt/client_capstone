@@ -25,7 +25,7 @@ export interface ICart {
   bookInfo: string;
   bookPrice: number;
   bookType: string;
-  image: string;
+  bookImage: string;
   numberBook: number;
 }
 export interface IOrder {

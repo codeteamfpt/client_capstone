@@ -12,11 +12,12 @@ type Props = {};
 
 const Cart = (props: Props) => {
   const [stateGlobal, _] = useRecoilState(globalState);
-  const { carts, userInfo, totalBill } = stateGlobal;
+  const { carts, userInfo } = stateGlobal;
   const navigate = useNavigate();
   const { removeItemCart } = useRemoveItemCart();
   const { getCartItems } = useCarts();
-  const { totalPrice } = useTotalPrice();
+  const { totalPrice, totalBill } = useTotalPrice();
+
   const onRemoveItem = async (bookId: string) => {
     await removeItemCart({
       accountId: userInfo?.accountId || "",
@@ -25,8 +26,11 @@ const Cart = (props: Props) => {
     await getCartItems({ accountId: userInfo?.accountId });
   };
   React.useEffect(() => {
-    totalPrice({ accountId: userInfo?.accountId });
-  }, [carts]);
+    if (carts) {
+      totalPrice({ accountId: userInfo?.accountId });
+    }
+  }, [totalBill]);
+
   return (
     <div id="cart">
       <div className="cart-container" style={{ backgroundColor: "white" }}>
@@ -70,7 +74,7 @@ const Cart = (props: Props) => {
                     <td className="product">
                       <div className="image">
                         <img
-                          src="/images/bia-truoc-Chinh-phuc-tieng-Nhat-tu-con-so-0-tap-1-convert.png"
+                          src={item?.bookImage || "/images/image.png"}
                           alt=""
                         />
                       </div>

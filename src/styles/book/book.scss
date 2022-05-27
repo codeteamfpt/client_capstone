@@ -1,6 +1,7 @@
 .card-item {
   width: calc(100% / 4);
   padding: 20px;
+
   .item {
     height: 440px;
     border-radius: 20px;
@@ -25,6 +26,11 @@
     .card-image {
       margin: 0 auto;
       width: 90%;
+      height: 230px;
+      img {
+        height: 100%;
+        object-fit: contain;
+      }
     }
     .card-content {
       position: relative;
