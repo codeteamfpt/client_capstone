@@ -112,6 +112,35 @@
           }
         }
       }
+      .discount {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        span {
+          position: relative;
+          cursor: pointer;
+          margin: 10px;
+          border: 3px solid #ccc;
+          width: 45%;
+          word-break: break-word;
+          padding: 10px 20px;
+          &.active {
+            border: 3px solid #ffbe2d;
+          }
+          &.active::after {
+            display: block;
+            content: "";
+            background-image: url("../../../public/images/correct.png");
+            background-size: contain;
+            width: 20px !important;
+            height: 20px !important;
+            z-index: 999;
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+        }
+      }
       .btn-payment {
         padding: 10px;
         margin: 20px 0;

@@ -33,6 +33,7 @@ const Header = () => {
       ...stateGlobal,
       userInfo: undefined,
       carts: undefined,
+      totalBill: 0,
     });
     NotificationSuccess("Thông báo", "Bạn đã đăng xuất");
   };

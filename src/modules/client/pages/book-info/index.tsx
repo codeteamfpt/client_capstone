@@ -27,12 +27,12 @@ const BookInfo = ({ item }: Props) => {
   const onAddToCart = async () => {
     await addToCart({
       accountId: userInfo?.accountId || "",
-      bookId: item?.bookId || "",
+      bookId: id || "",
       numberBook: 1,
     });
     NotificationSuccess(
       "Thông báo",
-      `Sản phẩm: ${item?.bookName} - được thêm vào giỏ hàng`
+      `Sản phẩm: ${book?.bookName} - được thêm vào giỏ hàng`
     );
   };
   return (
@@ -40,7 +40,7 @@ const BookInfo = ({ item }: Props) => {
       <div className="container">
         <div className="d-flex">
           <div className="image">
-            <img src="/images/mindmap-english-grammar.jpg" alt="" />
+            <img src={book?.bookImage} alt="" />
           </div>
           <div className="right">
             <div className="title">
