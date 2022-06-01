@@ -25,8 +25,8 @@ const PayInfo = (props: Props) => {
   React.useEffect(() => {
     totalPrice({ accountId: userInfo?.accountId });
     form.setFieldsValue({ ...form.getFieldsValue(), totalBill: totalBill });
-  }, [carts]);
-  console.log(totalBill);
+  }, [carts, userInfo?.accountId]);
+
   const onFinish = async (values: IOrder) => {
     await createOrder({
       ...values,

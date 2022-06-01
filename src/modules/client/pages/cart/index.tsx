@@ -1,5 +1,5 @@
 import { Col, Typography } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState } from "recoil";
 import useCarts from "../../../../common/hook/useCart";
@@ -11,12 +11,15 @@ import { Link } from "react-router-dom";
 type Props = {};
 
 const Cart = (props: Props) => {
-  const [stateGlobal, _] = useRecoilState(globalState);
+  const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
   const { carts, userInfo } = stateGlobal;
   const navigate = useNavigate();
   const { removeItemCart } = useRemoveItemCart();
   const { getCartItems } = useCarts();
   const { totalPrice, totalBill } = useTotalPrice();
+  const [active, setActive] = useState<number>(0);
+  const [discount, setDiscount] = useState<number>(0);
+  const [currentPrice, setCurrentPrice] = useState<number>();
 
   const onRemoveItem = async (bookId: string) => {
     await removeItemCart({
@@ -29,7 +32,19 @@ const Cart = (props: Props) => {
     if (carts) {
       totalPrice({ accountId: userInfo?.accountId });
     }
-  }, [totalBill]);
+  }, [carts]);
+
+  React.useEffect(() => {
+    if (active) {
+      setCurrentPrice(
+        totalBill && Math.floor(totalBill - totalBill * discount)
+      );
+      setStateGlobal({
+        ...stateGlobal,
+        currentPrice: currentPrice,
+      });
+    }
+  }, [active]);
 
   return (
     <div id="cart">
@@ -116,13 +131,50 @@ const Cart = (props: Props) => {
               </thead>
               <tbody>
                 <tr>
-                  <td data-label="Tổng phụ">{totalBill}₫</td>
+                  <td data-label="Tổng phụ">{currentPrice || totalBill}₫</td>
                   <td data-label="Giao hàng">Tính phí giao hàng</td>
-                  <td data-label="Tổng">{totalBill}₫</td>
+                  <td data-label="Tổng">{currentPrice || totalBill}₫</td>
                 </tr>
               </tbody>
             </table>
-
+            <div className="discount">
+              <span
+                className={active === 1 ? "active" : ""}
+                onClick={() => {
+                  setActive(1);
+                  setDiscount(0.1);
+                }}
+              >
+                Giảm 10% trên tổng hóa đơn
+              </span>
+              <span
+                className={active === 2 ? "active" : ""}
+                onClick={() => {
+                  setActive(2);
+                  setDiscount(0.15);
+                }}
+              >
+                Giảm 15% trên tổng hóa đơn
+              </span>
+              <span
+                className={active === 3 ? "active" : ""}
+                onClick={() => {
+                  setActive(3);
+                  setDiscount(0.2);
+                }}
+              >
+                Giảm 20% trên tổng hóa đơn
+              </span>
+              <span
+                className={active === 4 ? "active" : ""}
+                onClick={() => {
+                  setActive(4);
+                  setDiscount(0.3);
+                }}
+              >
+                Giảm 30% trên tổng hóa đơn
+              </span>
+            </div>
             <button
               className="btn-payment"
               onClick={() => navigate("/pay-info")}
