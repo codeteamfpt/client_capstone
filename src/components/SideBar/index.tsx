@@ -25,8 +25,12 @@ const SideBar = (props: Props) => {
   const onCollapse = () => {
     setCollapsed(!collapsed);
   };
+
+  // khi ấn vào nút đăng xuất thì gọi hàm này
   const onLogout = () => {
+    // xóa thông tin user trên bộ nhớ của browser
     localStorage.removeItem("userInfo");
+    // xóa thông tin user trong state
     setStateGlobal({
       ...stateGlobal,
       userInfo: undefined,

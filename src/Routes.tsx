@@ -18,6 +18,7 @@ import PayInfo from "./modules/client/pages/pay-info";
 import UserProfile from "./modules/client/pages/user-profile";
 
 function AppRoutes() {
+  // config router cho dự án
   return (
     <BrowserRouter>
       <Routes>

@@ -16,12 +16,15 @@ const Book = ({ item }: Props) => {
   const { addToCart } = useAddToCart();
   const { getCartItems } = useCarts();
 
+  // khi ấn nút thêm vào giỏ thì gọi hàm onAddToCart
   const onAddToCart = async () => {
+    // gọi hàm addToCart của custom hook truyền vào thông tin cần thêm vào giỏ hàng
     await addToCart({
       accountId: userInfo?.accountId || "",
       bookId: item?.bookId || "",
       numberBook: 1,
     });
+    // sau khi thêm vào giỏ hàng xong thì lấy lại thông tin của giỏ hàng để cập nhật lên màn hình
     await getCartItems({ accountId: userInfo?.accountId });
     NotificationSuccess(
       "Thông báo",

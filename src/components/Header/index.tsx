@@ -16,19 +16,29 @@ const Header = () => {
   const { userInfo, carts } = stateGlobal;
   const { getCartItems } = useCarts();
 
+  // nếu chưa có thông tin của giỏ hàng thì gọi hàm lấy thông tin giỏ hàng
   React.useEffect(() => {
     if (!carts) {
       getCartItems({ accountId: userInfo?.accountId });
     }
+    // khi user thay đổi thì cart được cập nhật lại
   }, [userInfo?.accountId]);
+
+  // ấn nút bật mở modal sẽ gọi hàm này
   const toggleModal = () => {
     setShow(!show);
   };
+
+  //ấn nút đóng modal sẽ gọi hàm này
   const closeModal = () => {
     setShow(false);
   };
+
+  // khi ấn vào nút logout thì gọi hàm này
   const onLogout = () => {
+    // xóa user info ở trong bộ nhớ của browser
     localStorage.removeItem("userInfo");
+    // xóa hết thông tin user ở state
     setStateGlobal({
       ...stateGlobal,
       userInfo: undefined,
@@ -61,6 +71,7 @@ const Header = () => {
             </a>
           </div>
           <div className="user-name">
+            {/* nếu có thông tin của user thì sẽ hiển thị dòng chữ kèm link để chuyển vào trang userprofile */}
             {userInfo && (
               <Link to="/user-profile">
                 <span
@@ -95,6 +106,7 @@ const Header = () => {
             </Link>
           </div>
           <div className="profile-button tool-item">
+            {/* Nếu k có user thì show hiển thị icon user để ấn show lên màn đăng nhập */}
             {Object.keys(userInfo || {}).length === 0 ? (
               <>
                 <img
@@ -106,6 +118,7 @@ const Header = () => {
                 <Login closeModal={closeModal} show={show} />
               </>
             ) : (
+              // nếu đã có user đăng nhập thì hiển thị icon đăng xuất để đăng xuất
               <>
                 <Popconfirm
                   title="Bạn có muốn đăng xuất không?"

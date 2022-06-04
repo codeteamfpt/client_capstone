@@ -12,8 +12,10 @@ interface AppStateInterface {
   currentPrice?: number;
 }
 const GLOBAL_STATE_KEY = "GLOBAL_STATE_KEY";
+// định nghĩa init state tổng cho project
 export const globalState = atom<AppStateInterface>({
   key: GLOBAL_STATE_KEY,
+  // khi chạy project thì các init state này được khởi tạo
   default: {
     books: undefined,
     book: undefined,

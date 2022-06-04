@@ -5,10 +5,10 @@ import {
   InputTypeCart,
   IOrder,
   IRemoveCartItemInput,
-  IResponseData,
 } from "../common/type";
 import axiosClient from "./api-caller";
 
+// gọi api mà bên backend định nghĩa
 const apis = {
   getAllBooks: async (): Promise<IBook[]> => {
     const url = process.env.REACT_APP_API_SOURCE + "book/getall";

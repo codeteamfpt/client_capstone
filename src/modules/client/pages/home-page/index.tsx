@@ -12,14 +12,18 @@ const HomePage = () => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
   const { books, userInfo } = stateGlobal;
 
+  // nếu chưa có quyển sách nào trên màn hình, lấy tất cả sách để hiển thị ra màn hình
   React.useEffect(() => {
     if (!books) {
       getBooks();
     }
   }, [books]);
+
+  // khi người dùng thay đổi thì sẽ lấy lại list order history cho user đó
   React.useEffect(() => {
     if (userInfo) getOrders({ accountId: userInfo?.accountId });
   }, [userInfo]);
+
   return (
     <>
       <div className="section">

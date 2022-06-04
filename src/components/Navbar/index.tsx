@@ -12,12 +12,13 @@ const Navbar = ({ userInfo }: IProps) => {
         <li className="nav-item">
           <Link to="/">Trang chủ</Link>
         </li>
+        {/* nếu user là admin thì show nút quản trị viên riêng cho admin */}
         {userInfo?.role === 1 && (
           <li className="nav-item">
             <Link to="/admin">Quản trị viên</Link>
           </li>
         )}
-
+        {/* kiểm tra user đã đăng nhập chưa để show ra các option riêng khi đăng nhập */}
         {(userInfo?.role === 0 || userInfo?.role === 1) && (
           <>
             <li className="nav-item">

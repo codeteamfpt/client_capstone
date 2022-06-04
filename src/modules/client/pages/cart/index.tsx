@@ -21,24 +21,31 @@ const Cart = (props: Props) => {
   const [discount, setDiscount] = useState<number>(0);
   const [currentPrice, setCurrentPrice] = useState<number>();
 
+  // khi ấn nút x để xóa sản phẩm khỏi giỏ thì gọi hàm này
   const onRemoveItem = async (bookId: string) => {
+    // gọi hàm xóa item của custom hook, truyền theo id để xóa
     await removeItemCart({
       accountId: userInfo?.accountId || "",
       bookId: bookId,
     });
+    // xóa xong lấy lại cart item để cập nhật lại dữ liệu trên màn hình
     await getCartItems({ accountId: userInfo?.accountId });
   };
+
+  // nếu giỏ hàng thay đổi bất kì gì thì tính lại giá tiền
   React.useEffect(() => {
     if (carts) {
       totalPrice({ accountId: userInfo?.accountId });
     }
   }, [carts]);
 
+  // nếu mục giảm giá được chọn hoặc thay đổi lựa chọn thì tính lại giá tiền
   React.useEffect(() => {
     if (active) {
       setCurrentPrice(
         totalBill && Math.floor(totalBill - totalBill * discount)
       );
+      // set giá tiền hiện có vào state
       setStateGlobal({
         ...stateGlobal,
         currentPrice: currentPrice,

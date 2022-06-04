@@ -13,6 +13,8 @@ const UserProfile = (props: Props) => {
   const { userInfo } = stateGlobal;
   const [form] = Form.useForm();
   const [userImage, setUserImage] = useState<string>("/images/user2.png");
+
+  // mỗi lần user thay đổi thì set lại vào form thông tin của user hiện tại
   React.useEffect(() => {
     if (userInfo) {
       form.setFieldsValue(userInfo);
@@ -20,6 +22,8 @@ const UserProfile = (props: Props) => {
     }
   }, [userInfo]);
   const onFinish = () => {};
+
+  // form này chỉ để xem, người dùng k thay đổi được dữ liệu
   return (
     <div id="user-profile">
       <div className="profile-wrapper">
