@@ -14,11 +14,14 @@ const OrderHistory = (props: Props) => {
   const [stateGlobal, setStateGlobal] = useRecoilState(globalState);
   const { orders, userInfo } = stateGlobal;
   const { getOrders } = useOrders();
+
+  // nếu chưa có thông tin order thì lấy ra theo user hiện tại
   React.useEffect(() => {
     if (!orders) {
       getOrders({ accountId: userInfo?.accountId });
     }
   }, [orders]);
+
   const columns: ColumnsType<IOrder> = [
     {
       title: "STT",

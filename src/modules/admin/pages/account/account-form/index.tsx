@@ -14,6 +14,7 @@ const AccountForm = (props: Props) => {
   const { onSave, typeForm, title, item } = props;
   const [form] = Form.useForm();
   const [userImage, setUserImage] = useState<string>("/images/user2.png");
+  // khai báo init value cho form
   const initialValues: IAccount = {
     accountId: item?.accountId || "",
     userName: item?.userName || "",
@@ -21,20 +22,27 @@ const AccountForm = (props: Props) => {
     role: 0,
     userImage: item?.userImage || "",
   };
+  // nếu đã có item truyền vào thì sẽ set ảnh vào state để hiển thị ra màn hình
   useEffect(() => {
     if (item) {
       setUserImage(item?.userImage || "/images/user2.png");
     }
   }, [item]);
+
+  // nếu init value thay đổi thì set lại value của form
   useEffect(() => {
     form.setFieldsValue(initialValues);
   }, [initialValues]);
+
+  // nếu input ảnh thay đổi thì set ảnh vào state
   const onImageChange = () => {
     setUserImage(form.getFieldValue("userImage"));
   };
+  // nếu ảnh thay đổi thì set lại text cho form
   React.useEffect(() => {
     form.setFieldsValue({ ...initialValues, userImage: userImage });
   }, [userImage]);
+
   return (
     <Row
       justify="center"

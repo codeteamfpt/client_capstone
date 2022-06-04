@@ -15,19 +15,26 @@ const Login = (props: Props) => {
   const { register } = useRegister();
   const { closeModal, show } = props;
 
+  // sau khi ấn submit form login thì gọi hàm onLogin để đăng nhập
   const onLogin = async (values: IAccount) => {
+    // gọi hàm login từ custom hook, truyền vào thông tin đăng nhập
     const user = await login(values?.userName || "", values?.passWord || "");
+    // nếu trả về 1 user thì load lại trang và cho user đăng nhập
     if (user) {
       window.location.reload();
     }
   };
+
+  // sau khi ấn submit form register thì gọi hàm onRegister để đăng nhập
   const onRegister = async (values: IAccount) => {
+    // gọi hàm register từ custom hook, truyền vào thông tin đăng kí
     const res = await register({
       userName: values?.userName || "",
       passWord: values?.passWord || "",
       role: 0,
       userImage: "none",
     });
+    // nếu đăng kí xong trả về thông tin user thì đóng cửa sổ đăng nhập đăng kí lại
     if (res) {
       closeModal();
     }

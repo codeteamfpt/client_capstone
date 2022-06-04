@@ -20,8 +20,10 @@ const TableRowAction = (props: IProps) => {
   const { onDelete, onEdit, record, title, onShowCart, formScreen } = props;
   return (
     <Space size="small">
+      {/* check nếu là admin thì k cho thao tác gì xóa */}
       {record.role !== 1 && (
         <>
+          {/* check nếu đang ở màn quản lí user thì show nút hiển thị giỏ hàng của user */}
           {formScreen === "account_manager" ? (
             <Button
               type="ghost"

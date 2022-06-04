@@ -1,5 +1,6 @@
 import { notification } from "antd";
 
+// custom lại notification của antd
 export const NotificationInfo = (title: string, message: string) => {
   notification.info({
     message: title,

@@ -25,13 +25,20 @@ const AccountManager = (props: Props) => {
     await removeAccount(record);
     await getAccounts();
   };
+
+  // khi ấn vào icon edit thì gọi hàm onedit
   const onEdit = (record: IAccount) => async () => {
+    // chuyển đến màn update user
     navigate(`/admin-account/update/${record.accountId}`);
   };
+  // khi ấn vào tạo mới thì gọi hàm oncreate
   const onCreate = () => {
+    //chuyển đến màn add user
     navigate("/admin-account/add");
   };
+  // khi ấn vào icon cart thì gọi hàm onshow cart
   const onShowCart = (record: IAccount) => async () => {
+    // chuyển đến màn list sản phẩm có trong cart
     navigate(`/admin-account/user-cart/${record.accountId}`);
   };
   return (

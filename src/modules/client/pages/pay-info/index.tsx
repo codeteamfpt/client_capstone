@@ -22,20 +22,26 @@ const PayInfo = (props: Props) => {
   const { createOrder } = useCreateOrder();
   const { totalPrice } = useTotalPrice();
 
+  // tính giá tiền mỗi lần cart thay đổi hoặc user khác đăng nhập
   React.useEffect(() => {
     totalPrice({ accountId: userInfo?.accountId });
+    // và set vào form
     form.setFieldsValue({ ...form.getFieldsValue(), totalBill: totalBill });
   }, [carts, userInfo?.accountId]);
 
+  // khi ấn nút đặt hàng thì gọi hàm này
   const onFinish = async (values: IOrder) => {
+    // gọi vào hàm này để create orderhistory cho user hiện tại, truyền theo thông tin vừa nhập
     await createOrder({
       ...values,
       accountId: userInfo?.accountId || "",
       totalBill: totalBill || 0,
     });
+    // reset lại cart cho user đó
     await createCart({ accountId: userInfo?.accountId });
-
+    // quay lại màn hình trang chủ
     navigate("/");
+    // reset thông tin giỏ hàng
     setStateGlobal({ ...stateGlobal, carts: undefined });
     NotificationSuccess("Thông báo", "Đặt hàng thành công");
   };
